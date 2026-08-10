@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.nova.factoryerp.controllers.inventory.DepartmentsController"
+      styleClass="content-area" alignment="CENTER" spacing="16" style="-fx-padding:60;"
+      stylesheets="@../../css/nova-erp.css">
+    <Label text="🚧" style="-fx-font-size:48px;"/>
+    <Label text="DepartmentsView" style="-fx-font-size:22px;-fx-font-weight:bold;-fx-text-fill:#4e8ef7;"/>
+    <Label text="Coming in next phase" style="-fx-text-fill:#9199b0;-fx-font-size:14px;"/>
+</VBox>

@@ -1,0 +1,612 @@
+/* ============================================================
+   Nova Factory ERP — Professional Dark ERP Theme
+   ============================================================ */
+
+/* ─── Color Palette ─────────────────────────────────────── */
+* {
+    /* Primary */
+    -nova-primary:        #1a73e8;
+    -nova-primary-dark:   #1557b0;
+    -nova-primary-light:  #4a9eff;
+
+    /* Backgrounds */
+    -nova-bg-dark:        #0d1117;
+    -nova-bg-medium:      #161b22;
+    -nova-bg-light:       #21262d;
+    -nova-bg-card:        #1c2128;
+    -nova-bg-hover:       #2d333b;
+    -nova-bg-selected:    #1a3a5c;
+
+    /* Sidebar */
+    -nova-sidebar-bg:     #0d1117;
+    -nova-sidebar-item:   #e6edf3;
+    -nova-sidebar-hover:  #21262d;
+    -nova-sidebar-active: #1a73e8;
+
+    /* Text */
+    -nova-text-primary:   #e6edf3;
+    -nova-text-secondary: #8b949e;
+    -nova-text-muted:     #6e7681;
+    -nova-text-inverse:   #0d1117;
+
+    /* Status Colors */
+    -nova-success:        #2ea043;
+    -nova-success-light:  #238636;
+    -nova-warning:        #e3b341;
+    -nova-warning-light:  #9e6a03;
+    -nova-danger:         #f85149;
+    -nova-danger-light:   #da3633;
+    -nova-info:           #58a6ff;
+
+    /* Borders */
+    -nova-border:         #30363d;
+    -nova-border-light:   #21262d;
+
+    /* Font */
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* ─── Root / Scene ──────────────────────────────────────── */
+.root {
+    -fx-background-color: -nova-bg-dark;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 13px;
+}
+
+/* ─── Labels ─────────────────────────────────────────────── */
+.label {
+    -fx-text-fill: -nova-text-primary;
+}
+
+.label-secondary {
+    -fx-text-fill: -nova-text-secondary;
+    -fx-font-size: 12px;
+}
+
+.label-muted {
+    -fx-text-fill: -nova-text-muted;
+    -fx-font-size: 11px;
+}
+
+.label-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -nova-text-primary;
+}
+
+.label-page-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -nova-text-primary;
+}
+
+.label-kpi-value {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -nova-text-primary;
+}
+
+.label-kpi-title {
+    -fx-font-size: 12px;
+    -fx-text-fill: -nova-text-secondary;
+}
+
+/* ─── Top Bar ────────────────────────────────────────────── */
+.top-bar {
+    -fx-background-color: -nova-bg-medium;
+    -fx-border-color: -nova-border;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 0 20 0 20;
+    -fx-min-height: 50px;
+    -fx-max-height: 50px;
+}
+
+.top-bar-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -nova-primary-light;
+}
+
+.top-bar-user {
+    -fx-font-size: 13px;
+    -fx-text-fill: -nova-text-secondary;
+}
+
+/* ─── Sidebar ────────────────────────────────────────────── */
+.sidebar {
+    -fx-background-color: -nova-sidebar-bg;
+    -fx-border-color: -nova-border;
+    -fx-border-width: 0 1 0 0;
+    -fx-min-width: 220px;
+    -fx-max-width: 220px;
+    -fx-padding: 10 0 10 0;
+}
+
+.sidebar-logo {
+    -fx-padding: 15 20 15 20;
+    -fx-background-color: -nova-bg-medium;
+    -fx-border-color: -nova-border;
+    -fx-border-width: 0 0 1 0;
+}
+
+.sidebar-logo-text {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -nova-primary-light;
+}
+
+.sidebar-logo-sub {
+    -fx-font-size: 10px;
+    -fx-text-fill: -nova-text-muted;
+}
+
+.sidebar-section-header {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -nova-text-muted;
+    -fx-padding: 16 20 4 20;
+    -fx-text-transform: uppercase;
+}
+
+.sidebar-item {
+    -fx-background-color: transparent;
+    -fx-text-fill: -nova-sidebar-item;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 20 10 20;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-min-width: 220px;
+    -fx-max-width: 220px;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+}
+
+.sidebar-item:hover {
+    -fx-background-color: -nova-sidebar-hover;
+}
+
+.sidebar-item.active {
+    -fx-background-color: -nova-bg-selected;
+    -fx-text-fill: -nova-primary-light;
+    -fx-border-color: -nova-primary;
+    -fx-border-width: 0 0 0 3;
+}
+
+.sidebar-sub-item {
+    -fx-padding: 8 20 8 40;
+    -fx-font-size: 12px;
+}
+
+/* ─── Content Area ───────────────────────────────────────── */
+.content-area {
+    -fx-background-color: -nova-bg-dark;
+    -fx-padding: 20;
+}
+
+.content-header {
+    -fx-padding: 0 0 16 0;
+    -fx-border-color: -nova-border;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* ─── Cards ──────────────────────────────────────────────── */
+.card {
+    -fx-background-color: -nova-bg-card;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0, 0, 2);
+}
+
+.kpi-card {
+    -fx-background-color: -nova-bg-card;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 16;
+    -fx-min-width: 160;
+    -fx-pref-width: 180;
+}
+
+.kpi-card-blue   { -fx-border-color: -nova-primary; -fx-border-width: 0 0 0 4; }
+.kpi-card-green  { -fx-border-color: -nova-success; -fx-border-width: 0 0 0 4; }
+.kpi-card-yellow { -fx-border-color: -nova-warning; -fx-border-width: 0 0 0 4; }
+.kpi-card-red    { -fx-border-color: -nova-danger;  -fx-border-width: 0 0 0 4; }
+
+/* ─── Buttons ────────────────────────────────────────────── */
+.btn-primary {
+    -fx-background-color: -nova-primary;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-padding: 8 18 8 18;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.btn-primary:hover {
+    -fx-background-color: -nova-primary-dark;
+}
+
+.btn-secondary {
+    -fx-background-color: -nova-bg-light;
+    -fx-text-fill: -nova-text-primary;
+    -fx-font-size: 13px;
+    -fx-padding: 8 18 8 18;
+    -fx-background-radius: 6;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 6;
+    -fx-cursor: hand;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: -nova-bg-hover;
+}
+
+.btn-danger {
+    -fx-background-color: -nova-danger-light;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-padding: 8 18 8 18;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.btn-danger:hover {
+    -fx-background-color: -nova-danger;
+}
+
+.btn-success {
+    -fx-background-color: -nova-success-light;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-padding: 8 18 8 18;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.btn-icon {
+    -fx-background-color: transparent;
+    -fx-text-fill: -nova-text-secondary;
+    -fx-padding: 6 10;
+    -fx-background-radius: 4;
+    -fx-cursor: hand;
+}
+
+.btn-icon:hover {
+    -fx-background-color: -nova-bg-hover;
+    -fx-text-fill: -nova-text-primary;
+}
+
+/* ─── Login Screen ───────────────────────────────────────── */
+.login-root {
+    -fx-background-color: -nova-bg-dark;
+}
+
+.login-card {
+    -fx-background-color: -nova-bg-card;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 40 50 40 50;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0, 0, 8);
+    -fx-min-width: 380;
+    -fx-max-width: 380;
+}
+
+.login-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -nova-primary-light;
+}
+
+.login-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: -nova-text-muted;
+}
+
+.login-field-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -nova-text-secondary;
+}
+
+.login-error {
+    -fx-text-fill: -nova-danger;
+    -fx-font-size: 12px;
+}
+
+/* ─── Text Fields ────────────────────────────────────────── */
+.text-field, .password-field, .text-area, .combo-box, .date-picker .text-field {
+    -fx-background-color: -nova-bg-light;
+    -fx-text-fill: -nova-text-primary;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 12 8 12;
+    -fx-font-size: 13px;
+    -fx-prompt-text-fill: -nova-text-muted;
+}
+
+.text-field:focused, .password-field:focused, .text-area:focused {
+    -fx-border-color: -nova-primary;
+    -fx-background-color: -nova-bg-hover;
+}
+
+/* ─── ComboBox ───────────────────────────────────────────── */
+.combo-box {
+    -fx-background-color: -nova-bg-light;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: -nova-bg-light;
+    -fx-text-fill: -nova-text-primary;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: -nova-bg-medium;
+    -fx-border-color: -nova-border;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: -nova-bg-hover;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .arrow {
+    -fx-background-color: -nova-text-secondary;
+}
+
+/* ─── DatePicker ─────────────────────────────────────────── */
+.date-picker {
+    -fx-background-color: -nova-bg-light;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: transparent;
+}
+
+/* ─── TableView ──────────────────────────────────────────── */
+.table-view {
+    -fx-background-color: -nova-bg-card;
+    -fx-border-color: -nova-border;
+    -fx-table-cell-border-color: -nova-border-light;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -nova-bg-medium;
+}
+
+.table-view .column-header {
+    -fx-background-color: -nova-bg-medium;
+    -fx-border-color: -nova-border;
+    -fx-border-width: 0 1 1 0;
+    -fx-size: 36px;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: -nova-text-secondary;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-row-cell {
+    -fx-background-color: -nova-bg-card;
+    -fx-border-color: -nova-border-light;
+    -fx-border-width: 0 0 1 0;
+    -fx-cell-size: 36px;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: -nova-bg-medium;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: -nova-bg-selected;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: -nova-bg-hover;
+}
+
+.table-cell {
+    -fx-text-fill: -nova-text-primary;
+    -fx-font-size: 13px;
+    -fx-padding: 0 8;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-view .corner {
+    -fx-background-color: -nova-bg-medium;
+}
+
+/* ─── Search Bar ─────────────────────────────────────────── */
+.search-bar {
+    -fx-background-color: -nova-bg-light;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 12 8 12;
+    -fx-font-size: 13px;
+    -fx-prompt-text-fill: -nova-text-muted;
+    -fx-text-fill: -nova-text-primary;
+    -fx-pref-width: 250;
+}
+
+/* ─── Status Badges ──────────────────────────────────────── */
+.badge {
+    -fx-background-radius: 12;
+    -fx-padding: 2 10 2 10;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.badge-success { -fx-background-color: #0d4a1f; -fx-text-fill: #2ea043; }
+.badge-warning { -fx-background-color: #4a3500; -fx-text-fill: #e3b341; }
+.badge-danger  { -fx-background-color: #4a1010; -fx-text-fill: #f85149; }
+.badge-info    { -fx-background-color: #0d3060; -fx-text-fill: #58a6ff; }
+.badge-muted   { -fx-background-color: -nova-bg-light; -fx-text-fill: -nova-text-muted; }
+
+/* ─── Separator ──────────────────────────────────────────── */
+.separator .line {
+    -fx-border-color: -nova-border;
+    -fx-border-width: 1 0 0 0;
+}
+
+/* ─── ScrollBar ──────────────────────────────────────────── */
+.scroll-bar:vertical, .scroll-bar:horizontal {
+    -fx-background-color: -nova-bg-dark;
+    -fx-pref-width: 8px;
+    -fx-pref-height: 8px;
+}
+
+.scroll-bar:vertical .thumb, .scroll-bar:horizontal .thumb {
+    -fx-background-color: -nova-bg-hover;
+    -fx-background-radius: 4;
+}
+
+.scroll-bar:vertical .thumb:hover, .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: -nova-text-muted;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-pref-height: 0;
+    -fx-pref-width: 0;
+}
+
+/* ─── Charts ─────────────────────────────────────────────── */
+.chart {
+    -fx-background-color: -nova-bg-card;
+    -fx-padding: 10;
+}
+
+.chart-plot-background {
+    -fx-background-color: -nova-bg-card;
+}
+
+.chart-title {
+    -fx-text-fill: -nova-text-primary;
+    -fx-font-size: 13px;
+}
+
+.axis {
+    -fx-tick-label-fill: -nova-text-secondary;
+    -fx-font-size: 11px;
+}
+
+.axis-label {
+    -fx-text-fill: -nova-text-secondary;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+}
+
+.chart-legend-item {
+    -fx-text-fill: -nova-text-secondary;
+}
+
+.default-color0.chart-bar { -fx-bar-fill: -nova-primary; }
+.default-color1.chart-bar { -fx-bar-fill: -nova-success; }
+.default-color2.chart-bar { -fx-bar-fill: -nova-warning; }
+.default-color3.chart-bar { -fx-bar-fill: -nova-danger; }
+
+.default-color0.chart-series-line { -fx-stroke: -nova-primary; }
+.default-color1.chart-series-line { -fx-stroke: -nova-success; }
+
+.chart-grid-lines .chart-vertical-grid-lines,
+.chart-grid-lines .chart-horizontal-grid-lines {
+    -fx-stroke: -nova-border;
+    -fx-stroke-dash-array: 2 4;
+}
+
+/* ─── TabPane ────────────────────────────────────────────── */
+.tab-pane {
+    -fx-background-color: transparent;
+}
+
+.tab-header-area {
+    -fx-background-color: -nova-bg-medium;
+    -fx-border-color: -nova-border;
+    -fx-border-width: 0 0 1 0;
+}
+
+.tab {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.tab .tab-label {
+    -fx-text-fill: -nova-text-secondary;
+    -fx-font-size: 13px;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: -nova-primary-light;
+}
+
+.tab:selected {
+    -fx-background-color: -nova-bg-dark;
+    -fx-border-color: -nova-primary;
+    -fx-border-width: 0 0 2 0;
+}
+
+/* ─── Spinner / Progress ─────────────────────────────────── */
+.progress-indicator {
+    -fx-progress-color: -nova-primary;
+}
+
+/* ─── Tooltip ────────────────────────────────────────────── */
+.tooltip {
+    -fx-background-color: -nova-bg-hover;
+    -fx-text-fill: -nova-text-primary;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-font-size: 12px;
+}
+
+/* ─── Form Sections ──────────────────────────────────────── */
+.form-section {
+    -fx-padding: 12;
+    -fx-background-color: -nova-bg-card;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-spacing: 10;
+}
+
+.form-section-title {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -nova-text-secondary;
+    -fx-padding: 0 0 8 0;
+    -fx-border-color: -nova-border;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* ─── Notification / Toast ───────────────────────────────── */
+.notification {
+    -fx-background-color: -nova-bg-medium;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 12 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 8, 0, 0, 4);
+}
+
+.notification-success { -fx-border-color: -nova-success; -fx-border-width: 0 0 0 4; }
+.notification-error   { -fx-border-color: -nova-danger;  -fx-border-width: 0 0 0 4; }
+.notification-warning { -fx-border-color: -nova-warning; -fx-border-width: 0 0 0 4; }

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.nova.factoryerp.controllers.DashboardController"
+      spacing="0" stylesheets="@../css/nova-erp.css">
+
+    <!-- Page Header -->
+    <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="12">
+        <VBox spacing="2">
+            <Label text="Dashboard" styleClass="page-title"/>
+            <Label fx:id="dateLabel" text="" styleClass="page-subtitle"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="↻  Refresh" styleClass="btn-secondary" onAction="#handleRefresh"/>
+    </HBox>
+
+    <!-- Scrollable Content -->
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="scroll-pane">
+        <VBox styleClass="page-content" spacing="20">
+
+            <!-- KPI Row 1 -->
+            <GridPane hgap="16" vgap="16">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="25"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="25"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="25"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="25"/>
+                </columnConstraints>
+
+                <!-- Total Sales -->
+                <VBox styleClass="kpi-card kpi-card-accent" spacing="6" GridPane.columnIndex="0">
+                    <Label text="TOTAL SALES" styleClass="kpi-label"/>
+                    <Label fx:id="totalSalesLabel" text="Rs 0.00" styleClass="kpi-value kpi-accent"/>
+                    <Label text="All time" styleClass="kpi-sub"/>
+                </VBox>
+
+                <!-- Today's Sales -->
+                <VBox styleClass="kpi-card kpi-card-success" spacing="6" GridPane.columnIndex="1">
+                    <Label text="TODAY'S SALES" styleClass="kpi-label"/>
+                    <Label fx:id="todaySalesLabel" text="Rs 0.00" styleClass="kpi-value kpi-success"/>
+                    <Label text="Today" styleClass="kpi-sub"/>
+                </VBox>
+
+                <!-- Pending Orders -->
+                <VBox styleClass="kpi-card kpi-card-warning" spacing="6" GridPane.columnIndex="2">
+                    <Label text="PENDING ORDERS" styleClass="kpi-label"/>
+                    <Label fx:id="pendingSalesLabel" text="0" styleClass="kpi-value kpi-warning"/>
+                    <Label text="Awaiting delivery" styleClass="kpi-sub"/>
+                </VBox>
+
+                <!-- Production Orders -->
+                <VBox styleClass="kpi-card" spacing="6" GridPane.columnIndex="3">
+                    <Label text="PRODUCTION ORDERS" styleClass="kpi-label"/>
+                    <Label fx:id="pendingProductionLabel" text="0" styleClass="kpi-value"/>
+                    <Label text="Active / Draft" styleClass="kpi-sub"/>
+                </VBox>
+            </GridPane>
+
+            <!-- KPI Row 2 -->
+            <GridPane hgap="16" vgap="16">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="25"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="25"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="25"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="25"/>
+                </columnConstraints>
+
+                <VBox styleClass="kpi-card" spacing="6" GridPane.columnIndex="0">
+                    <Label text="EMPLOYEES" styleClass="kpi-label"/>
+                    <Label fx:id="employeesLabel" text="0" styleClass="kpi-value"/>
+                    <Label text="Active staff" styleClass="kpi-sub"/>
+                </VBox>
+
+                <VBox styleClass="kpi-card kpi-card-success" spacing="6" GridPane.columnIndex="1">
+                    <Label text="TODAY'S ATTENDANCE" styleClass="kpi-label"/>
+                    <Label fx:id="attendanceLabel" text="0" styleClass="kpi-value kpi-success"/>
+                    <Label text="Present today" styleClass="kpi-sub"/>
+                </VBox>
+
+                <VBox styleClass="kpi-card kpi-card-danger" spacing="6" GridPane.columnIndex="2">
+                    <Label text="LOW STOCK MATERIALS" styleClass="kpi-label"/>
+                    <Label fx:id="lowStockMatLabel" text="0" styleClass="kpi-value kpi-danger"/>
+                    <Label text="Below minimum" styleClass="kpi-sub"/>
+                </VBox>
+
+                <VBox styleClass="kpi-card kpi-card-warning" spacing="6" GridPane.columnIndex="3">
+                    <Label text="FINISHED PRODUCTS" styleClass="kpi-label"/>
+                    <Label fx:id="finishedStockLabel" text="0" styleClass="kpi-value kpi-warning"/>
+                    <Label text="Units in stock" styleClass="kpi-sub"/>
+                </VBox>
+            </GridPane>
+
+            <!-- Charts Row -->
+            <HBox spacing="16">
+                <!-- Sales Chart -->
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="10">
+                    <Label text="Sales Overview — Current Year" styleClass="card-title"/>
+                    <BarChart fx:id="salesChart" prefHeight="240"
+                              animated="false" legendVisible="false">
+                        <xAxis><CategoryAxis label="Month"/></xAxis>
+                        <yAxis><NumberAxis label="Amount (Rs)"/></yAxis>
+                    </BarChart>
+                </VBox>
+            </HBox>
+
+            <!-- Recent Activity -->
+            <HBox spacing="16">
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="10">
+                    <Label text="Recent Activity" styleClass="card-title"/>
+                    <TableView fx:id="activityTable" prefHeight="200">
+                        <columns>
+                            <TableColumn fx:id="activityTimeCol" text="Time" prefWidth="140"/>
+                            <TableColumn fx:id="activityUserCol" text="User" prefWidth="100"/>
+                            <TableColumn fx:id="activityModuleCol" text="Module" prefWidth="100"/>
+                            <TableColumn fx:id="activityDescCol" text="Description" prefWidth="400"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </HBox>
+
+        </VBox>
+    </ScrollPane>
+</VBox>

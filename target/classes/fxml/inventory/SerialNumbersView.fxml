@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.nova.factoryerp.controllers.inventory.SerialNumbersController"
+      spacing="0" stylesheets="@../../css/nova-erp.css">
+
+    <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="12">
+        <VBox spacing="2">
+            <Label text="Serial Numbers" styleClass="page-title"/>
+            <Label text="Track individual product serial numbers" styleClass="page-subtitle"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="↻ Refresh" styleClass="btn-secondary" onAction="#handleRefresh"/>
+    </HBox>
+
+    <HBox styleClass="toolbar" alignment="CENTER_LEFT" spacing="10"
+          style="-fx-padding: 12 20 0 20;">
+        <TextField fx:id="searchField" promptText="Search serial number..."
+                   styleClass="search-bar" onKeyReleased="#handleSearch"/>
+        <ComboBox fx:id="productFilter" promptText="All Products"
+                  styleClass="combo-box" prefWidth="180" onAction="#handleSearch"/>
+        <ComboBox fx:id="statusFilter" promptText="All Status"
+                  styleClass="combo-box" prefWidth="140" onAction="#handleSearch"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="countLabel" styleClass="label-muted"/>
+    </HBox>
+
+    <VBox styleClass="page-content" VBox.vgrow="ALWAYS">
+        <TableView fx:id="serialsTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="serialCol"  text="Serial Number"    prefWidth="220"/>
+                <TableColumn fx:id="productCol" text="Product"          prefWidth="180"/>
+                <TableColumn fx:id="batchCol"   text="Batch"            prefWidth="150"/>
+                <TableColumn fx:id="dateCol"    text="Manufactured"     prefWidth="120"/>
+                <TableColumn fx:id="statusCol"  text="Status"           prefWidth="110"/>
+                <TableColumn fx:id="notesCol"   text="Notes"            prefWidth="200"/>
+            </columns>
+            <placeholder><Label text="No serial numbers found" styleClass="label-muted"/></placeholder>
+        </TableView>
+    </VBox>
+</VBox>

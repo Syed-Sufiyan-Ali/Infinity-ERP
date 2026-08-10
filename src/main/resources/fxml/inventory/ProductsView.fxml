@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.nova.factoryerp.controllers.inventory.ProductsController"
+      spacing="0" stylesheets="@../../css/nova-erp.css">
+
+    <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="12">
+        <VBox spacing="2">
+            <Label text="Finished Products" styleClass="page-title"/>
+            <Label text="Manage finished goods catalog" styleClass="page-subtitle"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="↻ Refresh" styleClass="btn-secondary" onAction="#handleRefresh"/>
+        <Button text="＋ Add Product" styleClass="btn-primary" onAction="#handleAdd"/>
+    </HBox>
+
+    <HBox styleClass="toolbar" alignment="CENTER_LEFT" spacing="10"
+          style="-fx-padding: 12 20 0 20;">
+        <TextField fx:id="searchField" promptText="Search products..."
+                   styleClass="search-bar" onKeyReleased="#handleSearch"/>
+        <ComboBox fx:id="categoryFilter" promptText="All Categories"
+                  styleClass="combo-box" prefWidth="160" onAction="#handleSearch"/>
+        <ComboBox fx:id="statusFilter" promptText="All Status"
+                  styleClass="combo-box" prefWidth="140" onAction="#handleSearch"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="countLabel" styleClass="label-muted"/>
+    </HBox>
+
+    <VBox styleClass="page-content" VBox.vgrow="ALWAYS">
+        <TableView fx:id="productsTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="codeCol"      text="Code"         prefWidth="120"/>
+                <TableColumn fx:id="nameCol"      text="Name"         prefWidth="180"/>
+                <TableColumn fx:id="categoryCol"  text="Category"     prefWidth="120"/>
+                <TableColumn fx:id="unitCol"      text="Unit"         prefWidth="70"/>
+                <TableColumn fx:id="stockCol"     text="Stock"        prefWidth="80"/>
+                <TableColumn fx:id="minStockCol"  text="Min Stock"    prefWidth="90"/>
+                <TableColumn fx:id="sellPriceCol" text="Sell Price"   prefWidth="100"/>
+                <TableColumn fx:id="costPriceCol" text="Cost Price"   prefWidth="100"/>
+                <TableColumn fx:id="statusCol"    text="Status"       prefWidth="90"/>
+                <TableColumn fx:id="actionsCol"   text="Actions"      prefWidth="150"/>
+            </columns>
+            <placeholder><Label text="No products found" styleClass="label-muted"/></placeholder>
+        </TableView>
+    </VBox>
+</VBox>

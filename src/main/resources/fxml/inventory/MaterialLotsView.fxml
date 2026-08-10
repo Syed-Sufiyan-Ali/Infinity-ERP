@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.nova.factoryerp.controllers.inventory.MaterialLotsController"
+      spacing="0" stylesheets="@../../css/nova-erp.css">
+
+    <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="12">
+        <VBox spacing="2">
+            <Label text="Material Lots" styleClass="page-title"/>
+            <Label text="Track raw material lot/batch receipts" styleClass="page-subtitle"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="↻ Refresh" styleClass="btn-secondary" onAction="#handleRefresh"/>
+        <Button text="＋ Receive Lot" styleClass="btn-primary" onAction="#handleAdd"/>
+    </HBox>
+
+    <HBox styleClass="toolbar" alignment="CENTER_LEFT" spacing="10"
+          style="-fx-padding: 12 20 0 20;">
+        <TextField fx:id="searchField" promptText="Search lot number or material..."
+                   styleClass="search-bar" onKeyReleased="#handleSearch"/>
+        <ComboBox fx:id="materialFilter" promptText="All Materials"
+                  styleClass="combo-box" prefWidth="180" onAction="#handleSearch"/>
+        <ComboBox fx:id="statusFilter" promptText="All Status"
+                  styleClass="combo-box" prefWidth="140" onAction="#handleSearch"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="countLabel" styleClass="label-muted"/>
+    </HBox>
+
+    <VBox styleClass="page-content" VBox.vgrow="ALWAYS">
+        <TableView fx:id="lotsTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="lotNumberCol"   text="Lot Number"    prefWidth="150"/>
+                <TableColumn fx:id="materialCol"    text="Material"      prefWidth="160"/>
+                <TableColumn fx:id="supplierCol"    text="Supplier"      prefWidth="130"/>
+                <TableColumn fx:id="originalQtyCol" text="Orig. Qty"     prefWidth="90"/>
+                <TableColumn fx:id="remainingQtyCol"text="Remaining"     prefWidth="90"/>
+                <TableColumn fx:id="receivedDateCol"text="Received"      prefWidth="100"/>
+                <TableColumn fx:id="expiryDateCol"  text="Expiry"        prefWidth="100"/>
+                <TableColumn fx:id="priceCol"       text="Price/Unit"    prefWidth="90"/>
+                <TableColumn fx:id="statusCol"      text="Status"        prefWidth="120"/>
+                <TableColumn fx:id="actionsCol"     text="Actions"       prefWidth="100"/>
+            </columns>
+            <placeholder><Label text="No lots found" styleClass="label-muted"/></placeholder>
+        </TableView>
+    </VBox>
+</VBox>

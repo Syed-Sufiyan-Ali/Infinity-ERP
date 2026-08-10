@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.nova.factoryerp.controllers.LoginController"
+           styleClass="login-root"
+           stylesheets="@../css/nova-erp.css">
+
+    <VBox alignment="CENTER" spacing="0">
+        <VBox styleClass="login-card" alignment="TOP_CENTER" spacing="0">
+            <VBox alignment="CENTER" spacing="6">
+                <Label text="Nova Factory ERP" styleClass="login-title"/>
+                <Label text="Factory Management System" styleClass="login-subtitle"/>
+            </VBox>
+            <Region prefHeight="28"/>
+            <VBox spacing="6">
+                <Label text="USERNAME" styleClass="login-field-label"/>
+                <TextField fx:id="usernameField" promptText="Enter username"
+                           styleClass="text-field" prefWidth="284"/>
+            </VBox>
+            <Region prefHeight="14"/>
+            <VBox spacing="6">
+                <Label text="PASSWORD" styleClass="login-field-label"/>
+                <PasswordField fx:id="passwordField" promptText="Enter password"
+                               styleClass="password-field" prefWidth="284"/>
+            </VBox>
+            <Region prefHeight="8"/>
+            <Label fx:id="errorLabel" styleClass="login-error"
+                   text="" wrapText="true" maxWidth="284"/>
+            <Region prefHeight="16"/>
+            <Button fx:id="loginButton" text="LOG IN"
+                    styleClass="login-btn" onAction="#handleLogin" defaultButton="true"/>
+            <Region prefHeight="20"/>
+            <Label text="Nova Factory ERP v1.0.0" styleClass="label-muted" maxWidth="Infinity"/>
+        </VBox>
+    </VBox>
+</StackPane>

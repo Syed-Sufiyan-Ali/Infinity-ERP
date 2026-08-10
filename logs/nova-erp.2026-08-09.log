@@ -1,0 +1,61 @@
+2026-08-09 17:07:32 [JavaFX Application Thread] INFO  c.nova.factoryerp.config.AppConfig - Configuration loaded successfully
+2026-08-09 17:07:32 [JavaFX Application Thread] ERROR c.n.f.database.DatabaseConnection - Database connection test failed: Access denied for user 'root'@'localhost' (using password: NO)
+2026-08-09 17:07:36 [JavaFX Application Thread] INFO  c.n.f.database.DatabaseConnection - All database connections closed
+2026-08-09 17:07:36 [JavaFX Application Thread] INFO  com.nova.factoryerp.Main - Application stopped
+2026-08-09 17:13:15 [JavaFX Application Thread] INFO  c.nova.factoryerp.config.AppConfig - Configuration loaded successfully
+2026-08-09 17:13:16 [JavaFX Application Thread] INFO  c.n.f.database.DatabaseConnection - Database connection test successful
+2026-08-09 17:13:16 [JavaFX Application Thread] DEBUG c.n.f.database.DatabaseConnection - New DB connection created (pool in-use: 1)
+2026-08-09 17:13:16 [JavaFX Application Thread] WARN  c.n.f.database.DatabaseSeeder - Could not verify/fix seed passwords: Table 'factory_management.users' doesn't exist
+2026-08-09 17:13:16 [JavaFX Application Thread] INFO  com.nova.factoryerp.Main - Nova Factory ERP v1.0.0 started
+2026-08-09 17:13:44 [Thread-3] ERROR c.n.factoryerp.security.AuthService - Database error during login
+java.sql.SQLSyntaxErrorException: Table 'factory_management.users' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:968)
+	at com.nova.factoryerp.dao.impl.UserDAOImpl.findByUsername(UserDAOImpl.java:47)
+	at com.nova.factoryerp.security.AuthService.login(AuthService.java:28)
+	at com.nova.factoryerp.controllers.LoginController.lambda$handleLogin$0(LoginController.java:56)
+	at java.base/java.lang.Thread.run(Thread.java:1516)
+2026-08-09 17:13:46 [Thread-4] ERROR c.n.factoryerp.security.AuthService - Database error during login
+java.sql.SQLSyntaxErrorException: Table 'factory_management.users' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:968)
+	at com.nova.factoryerp.dao.impl.UserDAOImpl.findByUsername(UserDAOImpl.java:47)
+	at com.nova.factoryerp.security.AuthService.login(AuthService.java:28)
+	at com.nova.factoryerp.controllers.LoginController.lambda$handleLogin$0(LoginController.java:56)
+	at java.base/java.lang.Thread.run(Thread.java:1516)
+2026-08-09 17:13:49 [JavaFX Application Thread] INFO  c.n.f.database.DatabaseConnection - All database connections closed
+2026-08-09 17:13:49 [JavaFX Application Thread] INFO  c.n.f.database.DatabaseConnection - All database connections closed
+2026-08-09 17:13:49 [JavaFX Application Thread] INFO  com.nova.factoryerp.Main - Application stopped
+2026-08-09 17:23:14 [JavaFX Application Thread] INFO  c.nova.factoryerp.config.AppConfig - Configuration loaded successfully
+2026-08-09 17:23:15 [JavaFX Application Thread] INFO  c.n.f.database.DatabaseConnection - Database connection test successful
+2026-08-09 17:23:15 [JavaFX Application Thread] DEBUG c.n.f.database.DatabaseConnection - New DB connection created (pool in-use: 1)
+2026-08-09 17:23:15 [JavaFX Application Thread] INFO  c.n.f.database.DatabaseSeeder - Admin password hash fixed automatically
+2026-08-09 17:23:15 [JavaFX Application Thread] INFO  c.n.f.database.DatabaseSeeder - Manager password hash fixed automatically
+2026-08-09 17:23:16 [JavaFX Application Thread] INFO  com.nova.factoryerp.Main - Nova Factory ERP v1.0.0 started
+2026-08-09 17:23:25 [Thread-3] INFO  c.n.factoryerp.security.AuthService - User logged in: admin [ADMIN]
+2026-08-09 17:23:26 [JavaFX Application Thread] INFO  c.n.f.controllers.LoginController - Main window opened
+2026-08-09 17:24:31 [JavaFX Application Thread] WARN  c.n.f.controllers.MainController - FXML not yet implemented: /fxml/inventory/MaterialLotsView.fxml — showing placeholder
+2026-08-09 17:25:21 [JavaFX Application Thread] INFO  c.n.f.database.DatabaseConnection - All database connections closed
+2026-08-09 17:25:21 [JavaFX Application Thread] INFO  com.nova.factoryerp.Main - Application stopped
+2026-08-09 17:29:33 [JavaFX Application Thread] INFO  c.nova.factoryerp.config.AppConfig - Configuration loaded successfully
+2026-08-09 17:29:33 [JavaFX Application Thread] INFO  c.n.f.database.DatabaseConnection - Database connection test successful
+2026-08-09 17:29:33 [JavaFX Application Thread] DEBUG c.n.f.database.DatabaseConnection - New DB connection created (pool in-use: 1)
+2026-08-09 17:29:34 [JavaFX Application Thread] INFO  com.nova.factoryerp.Main - Nova Factory ERP v1.0.0 started
+2026-08-09 17:29:40 [Thread-3] INFO  c.n.factoryerp.security.AuthService - User logged in: admin [ADMIN]
+2026-08-09 17:29:40 [JavaFX Application Thread] INFO  c.n.f.controllers.LoginController - Main window opened
+2026-08-09 17:30:19 [JavaFX Application Thread] WARN  c.n.f.controllers.MainController - FXML not yet implemented: /fxml/inventory/MaterialLotsView.fxml — showing placeholder
+2026-08-09 17:37:26 [JavaFX Application Thread] INFO  c.n.f.database.DatabaseConnection - All database connections closed
+2026-08-09 17:37:26 [JavaFX Application Thread] INFO  com.nova.factoryerp.Main - Application stopped
+2026-08-09 20:04:32 [JavaFX Application Thread] INFO  c.nova.factoryerp.config.AppConfig - Configuration loaded successfully
+2026-08-09 20:04:33 [JavaFX Application Thread] INFO  c.n.f.database.DatabaseConnection - Database connection test successful
+2026-08-09 20:04:33 [JavaFX Application Thread] DEBUG c.n.f.database.DatabaseConnection - New DB connection created (pool in-use: 1)
+2026-08-09 20:04:34 [JavaFX Application Thread] INFO  com.nova.factoryerp.Main - Nova Factory ERP v1.0.0 started
+2026-08-09 20:04:41 [Thread-3] INFO  c.n.factoryerp.security.AuthService - User logged in: admin [ADMIN]
+2026-08-09 20:04:42 [JavaFX Application Thread] INFO  c.n.f.controllers.LoginController - Main window opened
+2026-08-09 20:04:58 [JavaFX Application Thread] WARN  c.n.f.controllers.MainController - FXML not yet implemented: /fxml/inventory/MaterialLotsView.fxml — showing placeholder
+2026-08-09 21:05:52 [JavaFX Application Thread] INFO  c.n.f.database.DatabaseConnection - All database connections closed
+2026-08-09 21:05:52 [JavaFX Application Thread] INFO  com.nova.factoryerp.Main - Application stopped

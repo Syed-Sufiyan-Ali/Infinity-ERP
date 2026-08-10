@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.nova.factoryerp.controllers.inventory.StockTransactionsController"
+      spacing="0" stylesheets="@../../css/nova-erp.css">
+
+    <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="12">
+        <VBox spacing="2">
+            <Label text="Stock Transactions" styleClass="page-title"/>
+            <Label text="Full audit trail of all inventory movements" styleClass="page-subtitle"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="↻ Refresh" styleClass="btn-secondary" onAction="#handleRefresh"/>
+        <Button text="＋ Adjustment" styleClass="btn-primary" onAction="#handleAdjustment"/>
+    </HBox>
+
+    <HBox styleClass="toolbar" alignment="CENTER_LEFT" spacing="10"
+          style="-fx-padding: 12 20 0 20;">
+        <TextField fx:id="searchField" promptText="Search..." styleClass="search-bar" onKeyReleased="#handleSearch"/>
+        <ComboBox fx:id="typeFilter" promptText="All Types" styleClass="combo-box" prefWidth="170" onAction="#handleSearch"/>
+        <ComboBox fx:id="itemTypeFilter" promptText="All Items" styleClass="combo-box" prefWidth="160" onAction="#handleSearch"/>
+        <DatePicker fx:id="fromDate" promptText="From Date" prefWidth="140" onAction="#handleSearch"/>
+        <DatePicker fx:id="toDate"   promptText="To Date"   prefWidth="140" onAction="#handleSearch"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="countLabel" styleClass="label-muted"/>
+    </HBox>
+
+    <VBox styleClass="page-content" VBox.vgrow="ALWAYS">
+        <TableView fx:id="txTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="idCol"        text="ID"        prefWidth="70"/>
+                <TableColumn fx:id="dateCol"      text="Date/Time" prefWidth="140"/>
+                <TableColumn fx:id="typeCol"      text="Type"      prefWidth="150"/>
+                <TableColumn fx:id="itemTypeCol"  text="Item Type" prefWidth="120"/>
+                <TableColumn fx:id="itemCol"      text="Item"      prefWidth="180"/>
+                <TableColumn fx:id="qtyCol"       text="Qty"       prefWidth="80"/>
+                <TableColumn fx:id="refCol"       text="Reference" prefWidth="130"/>
+                <TableColumn fx:id="userCol"      text="By"        prefWidth="100"/>
+                <TableColumn fx:id="notesCol"     text="Notes"     prefWidth="200"/>
+            </columns>
+            <placeholder><Label text="No transactions found" styleClass="label-muted"/></placeholder>
+        </TableView>
+    </VBox>
+</VBox>

@@ -1,0 +1,10 @@
+2026-08-10 19:54:56 [JavaFX Application Thread] INFO  c.nova.factoryerp.config.AppConfig - Configuration loaded successfully
+2026-08-10 19:54:57 [JavaFX Application Thread] INFO  c.n.f.database.DatabaseConnection - Database connection test successful
+2026-08-10 19:54:57 [JavaFX Application Thread] DEBUG c.n.f.database.DatabaseConnection - New DB connection created (pool in-use: 1)
+2026-08-10 19:54:58 [JavaFX Application Thread] INFO  com.nova.factoryerp.Main - Nova Factory ERP v1.0.0 started
+2026-08-10 19:55:07 [Thread-3] INFO  c.n.factoryerp.security.AuthService - User logged in: admin [ADMIN]
+2026-08-10 19:55:08 [JavaFX Application Thread] INFO  c.n.f.controllers.LoginController - Main window opened
+2026-08-10 19:55:22 [JavaFX Application Thread] WARN  c.n.f.controllers.MainController - FXML not yet implemented: /fxml/inventory/MaterialLotsView.fxml — showing placeholder
+2026-08-10 19:59:30 [JavaFX Application Thread] INFO  c.n.factoryerp.security.AuthService - User logged out: admin
+2026-08-10 19:59:32 [JavaFX Application Thread] INFO  c.n.f.database.DatabaseConnection - All database connections closed
+2026-08-10 19:59:32 [JavaFX Application Thread] INFO  com.nova.factoryerp.Main - Application stopped

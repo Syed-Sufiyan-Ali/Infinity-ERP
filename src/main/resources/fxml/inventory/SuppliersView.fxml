@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.nova.factoryerp.controllers.inventory.SuppliersController"
+      spacing="0" stylesheets="@../../css/nova-erp.css">
+
+    <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="12">
+        <VBox spacing="2">
+            <Label text="Suppliers" styleClass="page-title"/>
+            <Label text="Manage material suppliers" styleClass="page-subtitle"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="↻ Refresh" styleClass="btn-secondary" onAction="#handleRefresh"/>
+        <Button text="＋ Add Supplier" styleClass="btn-primary" onAction="#handleAdd"/>
+    </HBox>
+
+    <HBox styleClass="toolbar" alignment="CENTER_LEFT" spacing="10"
+          style="-fx-padding: 12 20 0 20;">
+        <TextField fx:id="searchField" promptText="Search suppliers..."
+                   styleClass="search-bar" onKeyReleased="#handleSearch"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="countLabel" styleClass="label-muted"/>
+    </HBox>
+
+    <VBox styleClass="page-content" VBox.vgrow="ALWAYS">
+        <TableView fx:id="suppliersTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="codeCol"    text="Code"    prefWidth="100"/>
+                <TableColumn fx:id="nameCol"    text="Name"    prefWidth="180"/>
+                <TableColumn fx:id="contactCol" text="Contact" prefWidth="130"/>
+                <TableColumn fx:id="phoneCol"   text="Phone"   prefWidth="120"/>
+                <TableColumn fx:id="emailCol"   text="Email"   prefWidth="180"/>
+                <TableColumn fx:id="cityCol"    text="City"    prefWidth="100"/>
+                <TableColumn fx:id="statusCol"  text="Status"  prefWidth="80"/>
+                <TableColumn fx:id="actionsCol" text="Actions" prefWidth="120"/>
+            </columns>
+            <placeholder><Label text="No suppliers found" styleClass="label-muted"/></placeholder>
+        </TableView>
+    </VBox>
+</VBox>

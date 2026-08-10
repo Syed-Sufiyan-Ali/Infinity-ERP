@@ -1,0 +1,625 @@
+/* ============================================================
+   Nova Factory ERP — Dark Professional Theme
+   ============================================================ */
+
+/* ── Root Variables ─────────────────────────────────────────── */
+.root {
+    -nova-bg-darkest:   #0d0f14;
+    -nova-bg-dark:      #13161e;
+    -nova-bg-card:      #1a1e2a;
+    -nova-bg-sidebar:   #111420;
+    -nova-bg-input:     #1e2232;
+    -nova-bg-table-row: #1a1e2a;
+    -nova-bg-table-alt: #1e2232;
+    -nova-bg-hover:     #252b3d;
+    -nova-bg-selected:  #2d345a;
+
+    -nova-accent:       #4e8ef7;
+    -nova-accent-hover: #3d7af5;
+    -nova-accent-dark:  #2d5fc9;
+    -nova-success:      #2ecc71;
+    -nova-warning:      #f39c12;
+    -nova-danger:       #e74c3c;
+    -nova-info:         #3498db;
+
+    -nova-text-primary:   #e8eaf0;
+    -nova-text-secondary: #9199b0;
+    -nova-text-muted:     #5a6180;
+    -nova-text-accent:    #4e8ef7;
+    -nova-border:         #252b3d;
+    -nova-border-light:   #1e2334;
+
+    -nova-sidebar-w: 220px;
+    -nova-topbar-h: 52px;
+
+    -fx-font-family: "Segoe UI", "Inter", "Helvetica Neue", sans-serif;
+    -fx-font-size: 13px;
+    -fx-background-color: -nova-bg-dark;
+    -fx-text-fill: -nova-text-primary;
+}
+
+/* ── Main Layout ────────────────────────────────────────────── */
+.main-root {
+    -fx-background-color: -nova-bg-darkest;
+}
+
+/* ── Top Bar ────────────────────────────────────────────────── */
+.topbar {
+    -fx-background-color: -nova-bg-card;
+    -fx-border-color: -nova-border;
+    -fx-border-width: 0 0 1 0;
+    -fx-min-height: 52px;
+    -fx-max-height: 52px;
+    -fx-padding: 0 20 0 20;
+}
+
+.topbar-title {
+    -fx-text-fill: -nova-text-primary;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -nova-accent;
+}
+
+.topbar-subtitle {
+    -fx-text-fill: -nova-text-muted;
+    -fx-font-size: 11px;
+}
+
+.topbar-user-label {
+    -fx-text-fill: -nova-text-secondary;
+    -fx-font-size: 13px;
+}
+
+/* ── Sidebar ────────────────────────────────────────────────── */
+.sidebar {
+    -fx-background-color: -nova-bg-sidebar;
+    -fx-border-color: -nova-border;
+    -fx-border-width: 0 1 0 0;
+    -fx-min-width: 220px;
+    -fx-max-width: 220px;
+    -fx-padding: 0;
+}
+
+.sidebar-header {
+    -fx-background-color: -nova-bg-darkest;
+    -fx-padding: 16 16 16 16;
+    -fx-border-color: -nova-border;
+    -fx-border-width: 0 0 1 0;
+}
+
+.sidebar-app-name {
+    -fx-text-fill: -nova-accent;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.sidebar-version {
+    -fx-text-fill: -nova-text-muted;
+    -fx-font-size: 10px;
+}
+
+.sidebar-section-label {
+    -fx-text-fill: -nova-text-muted;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 16 4 16;
+}
+
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: -nova-text-secondary;
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 16 10 20;
+    -fx-cursor: hand;
+    -fx-pref-width: 220px;
+    -fx-max-width: 220px;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-graphic-text-gap: 10;
+}
+
+.nav-btn:hover {
+    -fx-background-color: -nova-bg-hover;
+    -fx-text-fill: -nova-text-primary;
+}
+
+.nav-btn.active {
+    -fx-background-color: -nova-bg-selected;
+    -fx-text-fill: -nova-accent;
+    -fx-border-color: -nova-accent;
+    -fx-border-width: 0 0 0 3;
+    -fx-padding: 10 16 10 17;
+}
+
+.nav-btn-sub {
+    -fx-padding: 8 16 8 36;
+    -fx-font-size: 12px;
+}
+
+.nav-separator {
+    -fx-border-color: -nova-border;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 4 0 4 0;
+}
+
+/* ── Content Area ───────────────────────────────────────────── */
+.content-area {
+    -fx-background-color: -nova-bg-dark;
+    -fx-padding: 0;
+}
+
+.page-header {
+    -fx-background-color: -nova-bg-card;
+    -fx-padding: 16 24 16 24;
+    -fx-border-color: -nova-border;
+    -fx-border-width: 0 0 1 0;
+}
+
+.page-title {
+    -fx-text-fill: -nova-text-primary;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.page-subtitle {
+    -fx-text-fill: -nova-text-secondary;
+    -fx-font-size: 12px;
+}
+
+.page-content {
+    -fx-background-color: -nova-bg-dark;
+    -fx-padding: 20;
+}
+
+/* ── KPI Cards ──────────────────────────────────────────────── */
+.kpi-card {
+    -fx-background-color: -nova-bg-card;
+    -fx-background-radius: 8;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 8;
+    -fx-padding: 16 20 16 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0, 2);
+}
+
+.kpi-label {
+    -fx-text-fill: -nova-text-secondary;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.kpi-value {
+    -fx-text-fill: -nova-text-primary;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.kpi-value-small {
+    -fx-font-size: 20px;
+}
+
+.kpi-sub {
+    -fx-text-fill: -nova-text-muted;
+    -fx-font-size: 11px;
+}
+
+.kpi-accent { -fx-text-fill: -nova-accent; }
+.kpi-success { -fx-text-fill: -nova-success; }
+.kpi-warning { -fx-text-fill: -nova-warning; }
+.kpi-danger  { -fx-text-fill: -nova-danger; }
+
+.kpi-card-accent  { -fx-border-color: -nova-accent -nova-border -nova-border -nova-border; }
+.kpi-card-success { -fx-border-color: -nova-success -nova-border -nova-border -nova-border; }
+.kpi-card-warning { -fx-border-color: -nova-warning -nova-border -nova-border -nova-border; }
+.kpi-card-danger  { -fx-border-color: -nova-danger -nova-border -nova-border -nova-border; }
+
+/* ── Cards / Panels ─────────────────────────────────────────── */
+.card {
+    -fx-background-color: -nova-bg-card;
+    -fx-background-radius: 8;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 8;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6, 0, 0, 1);
+}
+
+.card-title {
+    -fx-text-fill: -nova-text-primary;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.card-subtitle {
+    -fx-text-fill: -nova-text-secondary;
+    -fx-font-size: 12px;
+}
+
+/* ── Table ──────────────────────────────────────────────────── */
+.table-view {
+    -fx-background-color: -nova-bg-card;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-table-cell-border-color: -nova-border-light;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -nova-bg-darkest;
+    -fx-border-color: -nova-border;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-text-fill: -nova-text-secondary;
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+    -fx-padding: 10 8 10 8;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: -nova-text-secondary;
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+}
+
+.table-row-cell {
+    -fx-background-color: -nova-bg-table-row;
+    -fx-border-color: -nova-border-light;
+    -fx-border-width: 0 0 1 0;
+    -fx-text-fill: -nova-text-primary;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: -nova-bg-table-alt;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: -nova-bg-hover;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: -nova-bg-selected;
+    -fx-text-fill: -nova-text-primary;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: -nova-text-primary;
+    -fx-padding: 8 8 8 8;
+    -fx-font-size: 13px;
+    -fx-border-color: transparent;
+}
+
+.table-view .placeholder {
+    -fx-background-color: -nova-bg-card;
+}
+
+.table-view .placeholder .label {
+    -fx-text-fill: -nova-text-muted;
+    -fx-font-size: 13px;
+}
+
+/* ── Buttons ────────────────────────────────────────────────── */
+.btn-primary {
+    -fx-background-color: -nova-accent;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-padding: 8 18 8 18;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-border-width: 0;
+}
+.btn-primary:hover {
+    -fx-background-color: -nova-accent-hover;
+}
+.btn-primary:pressed {
+    -fx-background-color: -nova-accent-dark;
+}
+
+.btn-secondary {
+    -fx-background-color: -nova-bg-input;
+    -fx-text-fill: -nova-text-primary;
+    -fx-font-size: 13px;
+    -fx-padding: 8 18 8 18;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 6;
+    -fx-border-width: 1;
+}
+.btn-secondary:hover {
+    -fx-background-color: -nova-bg-hover;
+}
+
+.btn-danger {
+    -fx-background-color: -nova-danger;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-padding: 8 18 8 18;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+.btn-danger:hover {
+    -fx-background-color: #c0392b;
+}
+
+.btn-success {
+    -fx-background-color: -nova-success;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-padding: 8 18 8 18;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+.btn-success:hover {
+    -fx-background-color: #27ae60;
+}
+
+.btn-warning {
+    -fx-background-color: -nova-warning;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-padding: 8 18 8 18;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+.btn-icon {
+    -fx-background-color: transparent;
+    -fx-text-fill: -nova-text-secondary;
+    -fx-cursor: hand;
+    -fx-padding: 6 10 6 10;
+    -fx-background-radius: 4;
+    -fx-border-width: 0;
+}
+.btn-icon:hover {
+    -fx-background-color: -nova-bg-hover;
+    -fx-text-fill: -nova-text-primary;
+}
+
+/* ── Login Screen ───────────────────────────────────────────── */
+.login-root {
+    -fx-background-color: -nova-bg-darkest;
+}
+
+.login-card {
+    -fx-background-color: -nova-bg-card;
+    -fx-background-radius: 12;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 12;
+    -fx-padding: 40 48 40 48;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 24, 0, 0, 4);
+    -fx-min-width: 380px;
+    -fx-max-width: 380px;
+}
+
+.login-title {
+    -fx-text-fill: -nova-accent;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+.login-subtitle {
+    -fx-text-fill: -nova-text-muted;
+    -fx-font-size: 12px;
+    -fx-alignment: center;
+}
+
+.login-field-label {
+    -fx-text-fill: -nova-text-secondary;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.login-btn {
+    -fx-background-color: -nova-accent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 0 12 0;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-pref-width: 284px;
+    -fx-border-width: 0;
+}
+.login-btn:hover { -fx-background-color: -nova-accent-hover; }
+.login-btn:pressed { -fx-background-color: -nova-accent-dark; }
+
+.login-error {
+    -fx-text-fill: -nova-danger;
+    -fx-font-size: 12px;
+    -fx-alignment: center;
+}
+
+/* ── Text Fields & Inputs ───────────────────────────────────── */
+.text-field, .password-field, .text-area, .combo-box, .date-picker {
+    -fx-background-color: -nova-bg-input;
+    -fx-text-fill: -nova-text-primary;
+    -fx-prompt-text-fill: -nova-text-muted;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 12 8 12;
+    -fx-font-size: 13px;
+    -fx-border-width: 1;
+}
+
+.text-field:focused, .password-field:focused, .text-area:focused {
+    -fx-border-color: -nova-accent;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: -nova-text-primary;
+    -fx-background-color: -nova-bg-input;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: -nova-bg-card;
+    -fx-border-color: -nova-border;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: -nova-bg-hover;
+}
+
+.combo-box-popup .list-cell:selected {
+    -fx-background-color: -nova-bg-selected;
+}
+
+.date-picker .text-field {
+    -fx-border-width: 0;
+    -fx-padding: 0;
+}
+
+.date-picker-popup {
+    -fx-background-color: -nova-bg-card;
+}
+
+/* ── Labels ─────────────────────────────────────────────────── */
+.label {
+    -fx-text-fill: -nova-text-primary;
+}
+
+.label-muted {
+    -fx-text-fill: -nova-text-muted;
+    -fx-font-size: 12px;
+}
+
+.label-secondary {
+    -fx-text-fill: -nova-text-secondary;
+}
+
+.text-accent  { -fx-text-fill: -nova-accent; }
+.text-success { -fx-text-fill: -nova-success; }
+.text-warning { -fx-text-fill: -nova-warning; }
+.text-danger  { -fx-text-fill: -nova-danger; }
+.text-muted   { -fx-text-fill: -nova-text-muted; }
+.text-bold    { -fx-font-weight: bold; }
+
+/* ── Status Badges ──────────────────────────────────────────── */
+.badge {
+    -fx-background-radius: 4;
+    -fx-padding: 3 8 3 8;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+.badge-success { -fx-background-color: rgba(46,204,113,0.2); -fx-text-fill: -nova-success; }
+.badge-warning { -fx-background-color: rgba(243,156,18,0.2); -fx-text-fill: -nova-warning; }
+.badge-danger  { -fx-background-color: rgba(231,76,60,0.2);  -fx-text-fill: -nova-danger; }
+.badge-info    { -fx-background-color: rgba(78,142,247,0.2); -fx-text-fill: -nova-accent; }
+.badge-muted   { -fx-background-color: rgba(90,97,128,0.2);  -fx-text-fill: -nova-text-muted; }
+
+/* ── Search Bar ─────────────────────────────────────────────── */
+.search-bar {
+    -fx-background-color: -nova-bg-input;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 6 12 6 12;
+    -fx-font-size: 13px;
+    -fx-pref-width: 240px;
+}
+.search-bar:focused {
+    -fx-border-color: -nova-accent;
+}
+
+/* ── ScrollPane ─────────────────────────────────────────────── */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+.scroll-pane .scroll-bar {
+    -fx-background-color: -nova-bg-dark;
+}
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color: -nova-border;
+    -fx-background-radius: 4;
+}
+
+/* ── Separator ──────────────────────────────────────────────── */
+.separator .line {
+    -fx-border-color: -nova-border;
+}
+
+/* ── Dialog ─────────────────────────────────────────────────── */
+.dialog-pane {
+    -fx-background-color: -nova-bg-card;
+    -fx-border-color: -nova-border;
+}
+.dialog-pane .header-panel {
+    -fx-background-color: -nova-bg-darkest;
+}
+.dialog-pane .header-panel .label {
+    -fx-text-fill: -nova-text-primary;
+}
+.dialog-pane .content {
+    -fx-text-fill: -nova-text-primary;
+}
+.dialog-pane .button-bar .button {
+    -fx-background-color: -nova-bg-input;
+    -fx-text-fill: -nova-text-primary;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-cursor: hand;
+}
+.dialog-pane .button-bar .button:default {
+    -fx-background-color: -nova-accent;
+    -fx-text-fill: white;
+    -fx-border-width: 0;
+}
+
+/* ── CheckBox ───────────────────────────────────────────────── */
+.check-box .mark { -fx-background-color: -nova-text-primary; }
+.check-box:selected .box { -fx-background-color: -nova-accent; }
+.check-box .box {
+    -fx-background-color: -nova-bg-input;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 3;
+}
+.check-box .label { -fx-text-fill: -nova-text-primary; }
+
+/* ── Tab Pane ───────────────────────────────────────────────── */
+.tab-pane { -fx-background-color: transparent; }
+.tab-pane .tab-header-area { -fx-background-color: -nova-bg-card; }
+.tab { -fx-background-color: transparent; }
+.tab .tab-label { -fx-text-fill: -nova-text-secondary; -fx-font-size: 13px; }
+.tab:selected { -fx-background-color: -nova-bg-selected; }
+.tab:selected .tab-label { -fx-text-fill: -nova-accent; }
+.tab-pane .tab-content-area { -fx-background-color: -nova-bg-dark; }
+
+/* ── Progress Bar ───────────────────────────────────────────── */
+.progress-bar .bar { -fx-background-color: -nova-accent; }
+.progress-bar .track { -fx-background-color: -nova-bg-input; }
+
+/* ── Toolbar ────────────────────────────────────────────────── */
+.toolbar {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 12 0;
+}
+
+/* ── Section dividers in forms ──────────────────────────────── */
+.form-section-title {
+    -fx-text-fill: -nova-accent;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 0 4 0;
+}
+
+/* ── Tooltip ────────────────────────────────────────────────── */
+.tooltip {
+    -fx-background-color: -nova-bg-darkest;
+    -fx-text-fill: -nova-text-primary;
+    -fx-border-color: -nova-border;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-font-size: 12px;
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.nova.factoryerp.controllers.MainController"
+            styleClass="main-root"
+            stylesheets="@../css/nova-erp.css"
+            prefWidth="1280" prefHeight="800">
+
+    <!-- Top Bar -->
+    <top>
+        <HBox styleClass="topbar" alignment="CENTER_LEFT" spacing="0">
+            <VBox alignment="CENTER_LEFT">
+                <Label text="Nova Factory ERP" styleClass="topbar-title"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox alignment="CENTER" spacing="12">
+                <Label fx:id="userLabel" styleClass="topbar-user-label"/>
+                <Label fx:id="roleLabel" styleClass="label-muted"/>
+                <Separator orientation="VERTICAL" prefHeight="20"/>
+                <Button text="Logout" styleClass="btn-secondary" onAction="#handleLogout"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- Sidebar -->
+    <left>
+        <VBox fx:id="sidebar" styleClass="sidebar">
+            <VBox styleClass="sidebar-header">
+                <Label text="NOVA ERP" styleClass="sidebar-app-name"/>
+                <Label text="v1.0.0" styleClass="sidebar-version"/>
+            </VBox>
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="scroll-pane">
+                <VBox fx:id="navContainer" spacing="0"/>
+            </ScrollPane>
+        </VBox>
+    </left>
+
+    <!-- Content Area -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area"/>
+    </center>
+</BorderPane>
