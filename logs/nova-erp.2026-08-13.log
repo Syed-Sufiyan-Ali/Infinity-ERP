@@ -1,0 +1,8 @@
+2026-08-13 18:25:32 [JavaFX Application Thread] INFO  c.nova.factoryerp.config.AppConfig - Configuration loaded successfully
+2026-08-13 18:25:33 [JavaFX Application Thread] INFO  c.n.f.database.DatabaseConnection - Database connection test successful
+2026-08-13 18:25:33 [JavaFX Application Thread] DEBUG c.n.f.database.DatabaseConnection - New DB connection created (pool in-use: 1)
+2026-08-13 18:25:36 [JavaFX Application Thread] INFO  com.nova.factoryerp.Main - Nova Factory ERP v1.0.0 started
+2026-08-13 18:25:42 [Thread-3] INFO  c.n.factoryerp.security.AuthService - User logged in: admin [ADMIN]
+2026-08-13 18:25:43 [JavaFX Application Thread] INFO  c.n.f.controllers.LoginController - Main window opened
+2026-08-13 18:41:51 [JavaFX Application Thread] INFO  c.n.f.database.DatabaseConnection - All database connections closed
+2026-08-13 18:41:51 [JavaFX Application Thread] INFO  com.nova.factoryerp.Main - Application stopped

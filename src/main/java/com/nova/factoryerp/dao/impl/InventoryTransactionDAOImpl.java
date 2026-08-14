@@ -95,4 +95,27 @@ public class InventoryTransactionDAOImpl implements InventoryTransactionDAO {
         } finally { db.releaseConnection(conn); }
         return list;
     }
+  @Override
+public List<InventoryTransaction> findByLotId(int lotId) throws SQLException {
+    List<InventoryTransaction> list = new ArrayList<>();
+
+    String sql = SELECT_BASE +
+            "WHERE it.lot_id = ? ORDER BY it.created_at ASC";
+
+    Connection conn = db.getConnection();
+
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setInt(1, lotId);
+
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                list.add(mapRow(rs));
+            }
+        }
+    } finally {
+        db.releaseConnection(conn);
+    }
+
+    return list;
+}
 }

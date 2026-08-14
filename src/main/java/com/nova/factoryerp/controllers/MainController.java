@@ -137,42 +137,82 @@ public class MainController {
             log.error("Navigation error for page: {}", page, e);
         }
     }
+private Node loadPage(String page) {
 
-    private Node loadPage(String page) {
-        String fxmlFile = switch (page) {
-            case "dashboard"          -> "/fxml/dashboard.fxml";
-            case "sales_orders"       -> "/fxml/inventory/SalesOrdersView.fxml";
-            case "customers"          -> "/fxml/inventory/CustomersView.fxml";
-            case "invoices"           -> "/fxml/inventory/InvoicesView.fxml";
-            case "payments"           -> "/fxml/inventory/PaymentsView.fxml";
-            case "production_orders"  -> "/fxml/inventory/ProductionOrdersView.fxml";
-            case "production_batches" -> "/fxml/inventory/ProductionBatchesView.fxml";
-            case "bom"                -> "/fxml/inventory/BomView.fxml";
-            case "raw_materials"      -> "/fxml/inventory/RawMaterialsView.fxml";
-            case "material_lots"      -> "/fxml/inventory/MaterialLotsView.fxml";
-            case "products"           -> "/fxml/inventory/ProductsView.fxml";
-            case "serial_numbers"     -> "/fxml/inventory/SerialNumbersView.fxml";
-            case "stock_transactions" -> "/fxml/inventory/StockTransactionsView.fxml";
-            case "suppliers"          -> "/fxml/inventory/SuppliersView.fxml";
-            case "employees"          -> "/fxml/inventory/EmployeesView.fxml";
-            case "departments"        -> "/fxml/inventory/DepartmentsView.fxml";
-            case "attendance"         -> "/fxml/inventory/AttendanceView.fxml";
-            case "payroll"            -> "/fxml/inventory/PayrollView.fxml";
-            case "users"              -> "/fxml/inventory/UsersView.fxml";
-            case "audit_log"          -> "/fxml/inventory/AuditLogView.fxml";
-            default                   -> "/fxml/dashboard.fxml";
-        };
+    if ("material_lots".equals(page)) {
+
+        String fxmlFile = "/fxml/inventory/MaterialLotsView.fxml";
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-            Parent p = loader.load();
-            p.prefWidth(Double.MAX_VALUE);
-            return p;
-        } catch (IOException e) {
-            log.warn("FXML not yet implemented: {} — showing placeholder", fxmlFile);
+            System.out.println("======================================");
+            System.out.println("MATERIAL LOTS DIRECT TEST");
+            System.out.println("FXML PATH: " + fxmlFile);
+
+            var resource = getClass().getResource(fxmlFile);
+
+            System.out.println("RESOURCE: " + resource);
+
+            if (resource == null) {
+                throw new IOException("RESOURCE IS NULL: " + fxmlFile);
+            }
+
+            FXMLLoader loader = new FXMLLoader(resource);
+
+            Parent root = loader.load();
+
+            System.out.println("FXML LOADED SUCCESSFULLY!");
+            System.out.println("======================================");
+
+            root.prefWidth(Double.MAX_VALUE);
+
+            return root;
+
+        } catch (Exception e) {
+
+            System.out.println("!!!!!!!! FXML LOAD FAILED !!!!!!!!");
+            e.printStackTrace();
+
             return buildPlaceholder(page);
         }
     }
+
+    String fxmlFile = switch (page) {
+        case "dashboard"          -> "/fxml/dashboard.fxml";
+        case "sales_orders"       -> "/fxml/inventory/SalesOrdersView.fxml";
+        case "customers"          -> "/fxml/inventory/CustomersView.fxml";
+        case "invoices"           -> "/fxml/inventory/InvoicesView.fxml";
+        case "payments"           -> "/fxml/inventory/PaymentsView.fxml";
+        case "production_orders"  -> "/fxml/inventory/ProductionOrdersView.fxml";
+        case "production_batches" -> "/fxml/inventory/ProductionBatchesView.fxml";
+        case "bom"                -> "/fxml/inventory/BomView.fxml";
+        case "raw_materials"      -> "/fxml/inventory/RawMaterialsView.fxml";
+        case "products"           -> "/fxml/inventory/ProductsView.fxml";
+        case "serial_numbers"     -> "/fxml/inventory/SerialNumbersView.fxml";
+        case "stock_transactions" -> "/fxml/inventory/StockTransactionsView.fxml";
+        case "suppliers"          -> "/fxml/inventory/SuppliersView.fxml";
+        case "employees"          -> "/fxml/inventory/EmployeesView.fxml";
+        case "departments"        -> "/fxml/inventory/DepartmentsView.fxml";
+        case "attendance"         -> "/fxml/inventory/AttendanceView.fxml";
+        case "payroll"            -> "/fxml/inventory/PayrollView.fxml";
+        case "users"              -> "/fxml/inventory/UsersView.fxml";
+        case "audit_log"          -> "/fxml/inventory/AuditLogView.fxml";
+        default                   -> "/fxml/dashboard.fxml";
+    };
+
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent root = loader.load();
+        root.prefWidth(Double.MAX_VALUE);
+        return root;
+
+    }  catch (Exception e) {
+    System.err.println("!!!!!!!! FXML LOAD FAILED !!!!!!!!");
+    System.err.println("PAGE: " + page);
+    System.err.println("FXML: " + fxmlFile);
+    e.printStackTrace();
+    return buildPlaceholder(page);
+}
+}
 
     private Node buildPlaceholder(String page) {
         VBox box = new VBox();

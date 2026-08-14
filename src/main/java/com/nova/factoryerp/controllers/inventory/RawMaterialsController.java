@@ -1,5 +1,7 @@
 package com.nova.factoryerp.controllers.inventory;
-
+import com.nova.factoryerp.dao.impl.MaterialLotDAOImpl;
+import com.nova.factoryerp.dao.interfaces.MaterialLotDAO;
+import com.nova.factoryerp.models.MaterialLot;
 import com.nova.factoryerp.dao.impl.AuditLogDAOImpl;
 import com.nova.factoryerp.dao.impl.RawMaterialDAOImpl;
 import com.nova.factoryerp.dao.impl.SupplierDAOImpl;
@@ -47,9 +49,10 @@ public class RawMaterialsController {
     @FXML private TableColumn<RawMaterial, String> statusCol;
     @FXML private TableColumn<RawMaterial, Void> actionsCol;
 
-    private final RawMaterialDAO rmDAO = new RawMaterialDAOImpl();
-    private final SupplierDAO supplierDAO = new SupplierDAOImpl();
-    private final AuditLogDAO auditDAO = new AuditLogDAOImpl();
+  private final RawMaterialDAO rmDAO = new RawMaterialDAOImpl();
+private final SupplierDAO supplierDAO = new SupplierDAOImpl();
+private final AuditLogDAO auditDAO = new AuditLogDAOImpl();
+private final MaterialLotDAO materialLotDAO = new MaterialLotDAOImpl();
     private final ObservableList<RawMaterial> data = FXCollections.observableArrayList();
     private List<Supplier> allSuppliers;
 
@@ -88,23 +91,51 @@ public class RawMaterialsController {
         });
 
         // Actions column
-        actionsCol.setCellFactory(col -> new TableCell<>() {
-            final Button editBtn = new Button("Edit");
-            final Button delBtn  = new Button("Delete");
-            { editBtn.getStyleClass().add("btn-secondary");
-              delBtn.getStyleClass().add("btn-danger");
-              editBtn.setStyle("-fx-padding:4 10 4 10; -fx-font-size:11px;");
-              delBtn.setStyle("-fx-padding:4 10 4 10; -fx-font-size:11px;");
-              editBtn.setOnAction(e -> showEditDialog(getTableView().getItems().get(getIndex())));
-              delBtn.setOnAction(e -> handleDelete(getTableView().getItems().get(getIndex())));
-            }
-            @Override protected void updateItem(Void v, boolean empty) {
-                super.updateItem(v, empty);
-                if (empty) setGraphic(null);
-                else { HBox box = new HBox(6, editBtn, delBtn); setGraphic(box); }
-            }
+       // Actions column
+actionsCol.setCellFactory(col -> new TableCell<>() {
+
+    final Button editBtn = new Button("Edit");
+    final Button delBtn = new Button("Delete");
+    final Button detailsBtn = new Button("View Details");
+
+    {
+        editBtn.getStyleClass().add("btn-secondary");
+        delBtn.getStyleClass().add("btn-danger");
+        detailsBtn.getStyleClass().add("btn-secondary");
+
+        editBtn.setStyle("-fx-padding:4 10 4 10; -fx-font-size:11px;");
+        delBtn.setStyle("-fx-padding:4 10 4 10; -fx-font-size:11px;");
+        detailsBtn.setStyle("-fx-padding:4 10 4 10; -fx-font-size:11px;");
+
+        editBtn.setOnAction(e -> {
+            RawMaterial material = getTableView().getItems().get(getIndex());
+            showEditDialog(material);
         });
 
+        delBtn.setOnAction(e -> {
+            RawMaterial material = getTableView().getItems().get(getIndex());
+            handleDelete(material);
+        });
+
+        detailsBtn.setOnAction(e -> {
+            RawMaterial material = getTableView().getItems().get(getIndex());
+            showMaterialDetails(material);
+        });
+    }
+
+    @Override
+    protected void updateItem(Void item, boolean empty) {
+        super.updateItem(item, empty);
+
+        if (empty) {
+            setGraphic(null);
+        } else {
+            HBox box = new HBox(6, editBtn, delBtn, detailsBtn);
+            box.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+            setGraphic(box);
+        }
+    }
+});
         materialsTable.setItems(data);
     }
 
@@ -218,29 +249,50 @@ public class RawMaterialsController {
         });
 
         Optional<RawMaterial> result = dialog.showAndWait();
-        result.ifPresent(m -> {
-            try {
-                if (isNew) {
-                    // Check duplicate code
-                    if (rmDAO.findByCode(m.getCode()).isPresent()) {
-                        AlertUtil.showError("Duplicate", "Material code already exists: " + m.getCode());
-                        return;
-                    }
-                    rmDAO.save(m);
-                    auditDAO.log(new AuditLog(SessionManager.getInstance().getCurrentUserId(),
-                        SessionManager.getInstance().getCurrentUsername(),
-                        "CREATE", "INVENTORY", "Created raw material: " + m.getName()));
-                } else {
-                    rmDAO.update(m);
-                    auditDAO.log(new AuditLog(SessionManager.getInstance().getCurrentUserId(),
-                        SessionManager.getInstance().getCurrentUsername(),
-                        "UPDATE", "INVENTORY", "Updated raw material: " + m.getName()));
-                }
-                loadData();
-            } catch (SQLException e) {
-                AlertUtil.showDatabaseError(e.getMessage());
+       result.ifPresent(material -> {
+    try {
+        if (isNew) {
+            // Check duplicate code
+            if (rmDAO.findByCode(material.getCode()).isPresent()) {
+                AlertUtil.showError(
+                    "Duplicate",
+                    "Material code already exists: " + material.getCode()
+                );
+                return;
             }
-        });
+
+            rmDAO.save(material);
+
+            final String materialName = material.getName();
+
+            auditDAO.log(new AuditLog(
+                SessionManager.getInstance().getCurrentUserId(),
+                SessionManager.getInstance().getCurrentUsername(),
+                "CREATE",
+                "INVENTORY",
+                "Created raw material: " + materialName
+            ));
+
+        } else {
+            rmDAO.update(material);
+
+            final String materialName = material.getName();
+
+            auditDAO.log(new AuditLog(
+                SessionManager.getInstance().getCurrentUserId(),
+                SessionManager.getInstance().getCurrentUsername(),
+                "UPDATE",
+                "INVENTORY",
+                "Updated raw material: " + materialName
+            ));
+        }
+
+        loadData();
+
+    } catch (SQLException e) {
+        AlertUtil.showDatabaseError(e.getMessage());
+    }
+});
     }
 
     private void handleDelete(RawMaterial m) {
@@ -254,4 +306,280 @@ public class RawMaterialsController {
             loadData();
         } catch (SQLException e) { AlertUtil.showDatabaseError(e.getMessage()); }
     }
+    private void showMaterialDetails(RawMaterial material) {
+
+    Dialog<Void> dialog = new Dialog<>();
+    dialog.setTitle("Raw Material Details - " + material.getName());
+
+    dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+
+    dialog.getDialogPane().getStylesheets().add(
+        getClass().getResource("/css/nova-erp.css").toExternalForm()
+    );
+
+    dialog.getDialogPane().setStyle(
+        "-fx-background-color: #1a1e2a;"
+    );
+
+    VBox root = new VBox(15);
+    root.setPadding(new Insets(20));
+    root.setPrefWidth(850);
+
+    Label title = new Label(material.getName());
+    title.setStyle(
+        "-fx-text-fill: white; " +
+        "-fx-font-size: 20px; " +
+        "-fx-font-weight: bold;"
+    );
+
+    Label code = new Label(
+        "Code: " + material.getCode()
+    );
+    code.setStyle("-fx-text-fill:#9199b0; -fx-font-size:13px;");
+
+    // ---------------------------------------------------------
+    // STOCK SUMMARY
+    // ---------------------------------------------------------
+
+    Label summaryTitle = new Label("Stock Summary");
+    summaryTitle.setStyle(
+        "-fx-text-fill:white; " +
+        "-fx-font-size:15px; " +
+        "-fx-font-weight:bold;"
+    );
+
+    Label receivedLabel = new Label("Total Quantity Received: Loading...");
+    Label consumedLabel = new Label("Quantity Consumed: Loading...");
+    Label remainingLabel = new Label("Remaining Quantity: Loading...");
+
+    for (Label label : new Label[]{
+        receivedLabel,
+        consumedLabel,
+        remainingLabel
+    }) {
+        label.setStyle(
+            "-fx-text-fill:#c8cede; " +
+            "-fx-font-size:13px;"
+        );
+    }
+
+    VBox summaryBox = new VBox(
+        8,
+        receivedLabel,
+        consumedLabel,
+        remainingLabel
+    );
+
+    // ---------------------------------------------------------
+    // LOT TABLE
+    // ---------------------------------------------------------
+
+    Label lotsTitle = new Label("Material Lots");
+    lotsTitle.setStyle(
+        "-fx-text-fill:white; " +
+        "-fx-font-size:15px; " +
+        "-fx-font-weight:bold;"
+    );
+
+    TableView<MaterialLot> lotsTable = new TableView<>();
+
+    TableColumn<MaterialLot, String> lotNumberCol =
+        new TableColumn<>("Lot Number");
+
+    TableColumn<MaterialLot, String> receivedCol =
+        new TableColumn<>("Received");
+
+    TableColumn<MaterialLot, String> remainingCol =
+        new TableColumn<>("Remaining");
+
+    TableColumn<MaterialLot, String> consumedCol =
+        new TableColumn<>("Consumed");
+
+    TableColumn<MaterialLot, String> supplierCol =
+        new TableColumn<>("Supplier");
+
+    TableColumn<MaterialLot, String> costCol =
+        new TableColumn<>("Unit Cost");
+
+    TableColumn<MaterialLot, String> dateCol =
+        new TableColumn<>("Received Date");
+
+    lotNumberCol.setCellValueFactory(
+        c -> new SimpleStringProperty(
+            c.getValue().getLotNumber()
+        )
+    );
+
+    receivedCol.setCellValueFactory(
+        c -> new SimpleStringProperty(
+            NumberUtil.formatNumber(
+                c.getValue().getOriginalQty()
+            )
+        )
+    );
+
+    remainingCol.setCellValueFactory(
+        c -> new SimpleStringProperty(
+            NumberUtil.formatNumber(
+                c.getValue().getRemainingQty()
+            )
+        )
+    );
+
+    consumedCol.setCellValueFactory(c -> {
+
+        BigDecimal received =
+            c.getValue().getOriginalQty() != null
+                ? c.getValue().getOriginalQty()
+                : BigDecimal.ZERO;
+
+        BigDecimal remaining =
+            c.getValue().getRemainingQty() != null
+                ? c.getValue().getRemainingQty()
+                : BigDecimal.ZERO;
+
+        BigDecimal consumed =
+            received.subtract(remaining);
+
+        return new SimpleStringProperty(
+            NumberUtil.formatNumber(consumed)
+        );
+    });
+
+    supplierCol.setCellValueFactory(
+        c -> new SimpleStringProperty(
+            c.getValue().getSupplierName() != null
+                ? c.getValue().getSupplierName()
+                : "-"
+        )
+    );
+
+    costCol.setCellValueFactory(
+        c -> new SimpleStringProperty(
+            NumberUtil.formatCurrency(
+                c.getValue().getPurchasePrice()
+            )
+        )
+    );
+
+    dateCol.setCellValueFactory(c -> {
+
+        if (c.getValue().getReceivedDate() == null) {
+            return new SimpleStringProperty("-");
+        }
+
+        return new SimpleStringProperty(
+            c.getValue().getReceivedDate().toString()
+        );
+    });
+
+    lotsTable.getColumns().addAll(
+        lotNumberCol,
+        receivedCol,
+        consumedCol,
+        remainingCol,
+        supplierCol,
+        costCol,
+        dateCol
+    );
+
+    lotsTable.setColumnResizePolicy(
+        TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS
+    );
+
+    VBox.setVgrow(lotsTable, Priority.ALWAYS);
+
+    // ---------------------------------------------------------
+    // LOAD LOTS
+    // ---------------------------------------------------------
+
+    Thread thread = new Thread(() -> {
+
+        try {
+
+            List<MaterialLot> lots =
+                materialLotDAO.findByMaterial(material.getId());
+
+            BigDecimal totalReceived = BigDecimal.ZERO;
+            BigDecimal totalRemaining = BigDecimal.ZERO;
+
+            for (MaterialLot lot : lots) {
+
+                if (lot.getOriginalQty() != null) {
+                    totalReceived =
+                        totalReceived.add(
+                            lot.getOriginalQty()
+                        );
+                }
+
+                if (lot.getRemainingQty() != null) {
+                    totalRemaining =
+                        totalRemaining.add(
+                            lot.getRemainingQty()
+                        );
+                }
+            }
+
+            BigDecimal totalConsumed =
+                totalReceived.subtract(totalRemaining);
+
+            final BigDecimal finalTotalReceived = totalReceived;
+final BigDecimal finalTotalConsumed = totalConsumed;
+final BigDecimal finalTotalRemaining = totalRemaining;
+
+Platform.runLater(() -> {
+
+    lotsTable.setItems(
+        FXCollections.observableArrayList(lots)
+    );
+
+    receivedLabel.setText(
+        "Total Quantity Received: " +
+        NumberUtil.formatNumber(finalTotalReceived)
+    );
+
+    consumedLabel.setText(
+        "Quantity Consumed: " +
+        NumberUtil.formatNumber(finalTotalConsumed)
+    );
+
+    remainingLabel.setText(
+        "Remaining Quantity: " +
+        NumberUtil.formatNumber(finalTotalRemaining)
+    );
+});
+
+        } catch (SQLException e) {
+
+            Platform.runLater(() ->
+                AlertUtil.showDatabaseError(
+                    e.getMessage()
+                )
+            );
+        }
+
+    });
+
+    thread.setDaemon(true);
+    thread.start();
+
+    // ---------------------------------------------------------
+    // BUILD DIALOG
+    // ---------------------------------------------------------
+
+    root.getChildren().addAll(
+        title,
+        code,
+        new Separator(),
+        summaryTitle,
+        summaryBox,
+        new Separator(),
+        lotsTitle,
+        lotsTable
+    );
+
+    dialog.getDialogPane().setContent(root);
+
+    dialog.showAndWait();
+}
 }

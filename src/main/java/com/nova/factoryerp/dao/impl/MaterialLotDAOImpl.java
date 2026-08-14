@@ -20,38 +20,72 @@ public class MaterialLotDAOImpl implements MaterialLotDAO {
         "LEFT JOIN suppliers s ON ml.supplier_id = s.id ";
 
     private MaterialLot mapRow(ResultSet rs) throws SQLException {
-        MaterialLot l = new MaterialLot();
-        l.setId(rs.getInt("id"));
-        l.setLotNumber(rs.getString("lot_number"));
-        l.setMaterialId(rs.getInt("material_id"));
-        l.setMaterialName(rs.getString("material_name"));
-        l.setMaterialCode(rs.getString("material_code"));
-        l.setSupplierId(rs.getInt("supplier_id"));
-        l.setSupplierName(rs.getString("supplier_name"));
-        l.setOriginalQty(rs.getBigDecimal("original_qty"));
-        l.setRemainingQty(rs.getBigDecimal("remaining_qty"));
-        Date rd = rs.getDate("received_date");
-        if (rd != null) l.setReceivedDate(rd.toLocalDate());
-        Date ed = rs.getDate("expiry_date");
-        if (ed != null) l.setExpiryDate(ed.toLocalDate());
-        l.setPurchasePrice(rs.getBigDecimal("purchase_price"));
-        l.setStatus(rs.getString("status"));
-        l.setNotes(rs.getString("notes"));
-        Timestamp ts = rs.getTimestamp("created_at");
-        if (ts != null) l.setCreatedAt(ts.toLocalDateTime());
-        return l;
+    MaterialLot l = new MaterialLot();
+
+    l.setId(rs.getInt("id"));
+    l.setLotNumber(rs.getString("lot_number"));
+
+    l.setMaterialId(rs.getInt("material_id"));
+    l.setMaterialName(rs.getString("material_name"));
+    l.setMaterialCode(rs.getString("material_code"));
+
+    l.setSupplierId(rs.getInt("supplier_id"));
+    l.setSupplierName(rs.getString("supplier_name"));
+
+    // Supplier's own lot/batch number
+    l.setSupplierLotNumber(rs.getString("supplier_lot_number"));
+
+    l.setOriginalQty(rs.getBigDecimal("original_qty"));
+    l.setRemainingQty(rs.getBigDecimal("remaining_qty"));
+
+    Date rd = rs.getDate("received_date");
+    if (rd != null) {
+        l.setReceivedDate(rd.toLocalDate());
     }
 
-    @Override
-    public List<MaterialLot> findAll() throws SQLException {
-        List<MaterialLot> list = new ArrayList<>();
-        Connection conn = db.getConnection();
-        try (PreparedStatement ps = conn.prepareStatement(SELECT_BASE + "ORDER BY ml.received_date DESC, ml.lot_number");
-             ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) list.add(mapRow(rs));
-        } finally { db.releaseConnection(conn); }
-        return list;
+    // Manufacturing date
+    Date md = rs.getDate("manufacturing_date");
+    if (md != null) {
+        l.setManufacturingDate(md.toLocalDate());
     }
+
+    // Expiry date
+    Date ed = rs.getDate("expiry_date");
+    if (ed != null) {
+        l.setExpiryDate(ed.toLocalDate());
+    }
+
+    l.setPurchasePrice(rs.getBigDecimal("purchase_price"));
+    l.setStatus(rs.getString("status"));
+    l.setNotes(rs.getString("notes"));
+
+    Timestamp ts = rs.getTimestamp("created_at");
+    if (ts != null) {
+        l.setCreatedAt(ts.toLocalDateTime());
+    }
+
+    return l;
+}
+   @Override
+public List<MaterialLot> findAll() throws SQLException {
+    List<MaterialLot> list = new ArrayList<>();
+
+    Connection conn = db.getConnection();
+
+    try (PreparedStatement ps = conn.prepareStatement(
+            SELECT_BASE + "ORDER BY ml.received_date DESC, ml.lot_number");
+         ResultSet rs = ps.executeQuery()) {
+
+        while (rs.next()) {
+            list.add(mapRow(rs));
+        }
+
+    } finally {
+        db.releaseConnection(conn);
+    }
+
+    return list;
+}
 
     @Override
     public List<MaterialLot> search(String keyword, Integer materialId, String status) throws SQLException {
@@ -106,44 +140,150 @@ public class MaterialLotDAOImpl implements MaterialLotDAO {
         return Optional.empty();
     }
 
-    @Override
-    public void save(MaterialLot lot) throws SQLException {
-        String sql = "INSERT INTO material_lots (lot_number,material_id,supplier_id,original_qty,remaining_qty," +
-                     "received_date,expiry_date,purchase_price,status,notes,created_by) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-        Connection conn = db.getConnection();
-        try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, lot.getLotNumber());
-            ps.setInt(2, lot.getMaterialId());
-            if (lot.getSupplierId() > 0) ps.setInt(3, lot.getSupplierId()); else ps.setNull(3, Types.INTEGER);
-            ps.setBigDecimal(4, lot.getOriginalQty());
-            ps.setBigDecimal(5, lot.getRemainingQty());
-            ps.setDate(6, lot.getReceivedDate() != null ? Date.valueOf(lot.getReceivedDate()) : Date.valueOf(java.time.LocalDate.now()));
-            ps.setDate(7, lot.getExpiryDate() != null ? Date.valueOf(lot.getExpiryDate()) : null);
-            ps.setBigDecimal(8, lot.getPurchasePrice());
-            ps.setString(9, lot.getStatus() != null ? lot.getStatus() : "AVAILABLE");
-            ps.setString(10, lot.getNotes());
-            ps.setObject(11, null);
-            ps.executeUpdate();
-            try (ResultSet keys = ps.getGeneratedKeys()) { if (keys.next()) lot.setId(keys.getInt(1)); }
-        } finally { db.releaseConnection(conn); }
+   @Override
+public void save(MaterialLot lot) throws SQLException {
+
+    String sql =
+        "INSERT INTO material_lots " +
+        "(lot_number, material_id, supplier_id, supplier_lot_number, " +
+        "original_qty, remaining_qty, received_date, manufacturing_date, " +
+        "expiry_date, purchase_price, status, notes, created_by) " +
+        "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+    Connection conn = db.getConnection();
+
+    try (PreparedStatement ps =
+             conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+        ps.setString(1, lot.getLotNumber());
+        ps.setInt(2, lot.getMaterialId());
+
+        if (lot.getSupplierId() > 0) {
+            ps.setInt(3, lot.getSupplierId());
+        } else {
+            ps.setNull(3, Types.INTEGER);
+        }
+
+        ps.setString(4, lot.getSupplierLotNumber());
+
+        ps.setBigDecimal(5, lot.getOriginalQty());
+        ps.setBigDecimal(6, lot.getRemainingQty());
+
+        ps.setDate(
+            7,
+            lot.getReceivedDate() != null
+                ? Date.valueOf(lot.getReceivedDate())
+                : Date.valueOf(java.time.LocalDate.now())
+        );
+
+        ps.setDate(
+            8,
+            lot.getManufacturingDate() != null
+                ? Date.valueOf(lot.getManufacturingDate())
+                : null
+        );
+
+        ps.setDate(
+            9,
+            lot.getExpiryDate() != null
+                ? Date.valueOf(lot.getExpiryDate())
+                : null
+        );
+
+        ps.setBigDecimal(10, lot.getPurchasePrice());
+
+        ps.setString(
+            11,
+            lot.getStatus() != null
+                ? lot.getStatus()
+                : "AVAILABLE"
+        );
+
+        ps.setString(12, lot.getNotes());
+
+        ps.setObject(13, null);
+
+        ps.executeUpdate();
+
+        try (ResultSet keys = ps.getGeneratedKeys()) {
+            if (keys.next()) {
+                lot.setId(keys.getInt(1));
+            }
+        }
+
+    } finally {
+        db.releaseConnection(conn);
     }
+}
 
     @Override
-    public void update(MaterialLot lot) throws SQLException {
-        String sql = "UPDATE material_lots SET lot_number=?,supplier_id=?,original_qty=?,remaining_qty=?," +
-                     "received_date=?,expiry_date=?,purchase_price=?,status=?,notes=? WHERE id=?";
-        Connection conn = db.getConnection();
-        try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, lot.getLotNumber());
-            if (lot.getSupplierId() > 0) ps.setInt(2, lot.getSupplierId()); else ps.setNull(2, Types.INTEGER);
-            ps.setBigDecimal(3, lot.getOriginalQty()); ps.setBigDecimal(4, lot.getRemainingQty());
-            ps.setDate(5, lot.getReceivedDate() != null ? Date.valueOf(lot.getReceivedDate()) : null);
-            ps.setDate(6, lot.getExpiryDate() != null ? Date.valueOf(lot.getExpiryDate()) : null);
-            ps.setBigDecimal(7, lot.getPurchasePrice()); ps.setString(8, lot.getStatus());
-            ps.setString(9, lot.getNotes()); ps.setInt(10, lot.getId());
-            ps.executeUpdate();
-        } finally { db.releaseConnection(conn); }
+public void update(MaterialLot lot) throws SQLException {
+
+    String sql =
+        "UPDATE material_lots SET " +
+        "lot_number=?, " +
+        "supplier_id=?, " +
+        "supplier_lot_number=?, " +
+        "original_qty=?, " +
+        "remaining_qty=?, " +
+        "received_date=?, " +
+        "manufacturing_date=?, " +
+        "expiry_date=?, " +
+        "purchase_price=?, " +
+        "status=?, " +
+        "notes=? " +
+        "WHERE id=?";
+
+    Connection conn = db.getConnection();
+
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setString(1, lot.getLotNumber());
+
+        if (lot.getSupplierId() > 0) {
+            ps.setInt(2, lot.getSupplierId());
+        } else {
+            ps.setNull(2, Types.INTEGER);
+        }
+
+        ps.setString(3, lot.getSupplierLotNumber());
+
+        ps.setBigDecimal(4, lot.getOriginalQty());
+        ps.setBigDecimal(5, lot.getRemainingQty());
+
+        ps.setDate(
+            6,
+            lot.getReceivedDate() != null
+                ? Date.valueOf(lot.getReceivedDate())
+                : null
+        );
+
+        ps.setDate(
+            7,
+            lot.getManufacturingDate() != null
+                ? Date.valueOf(lot.getManufacturingDate())
+                : null
+        );
+
+        ps.setDate(
+            8,
+            lot.getExpiryDate() != null
+                ? Date.valueOf(lot.getExpiryDate())
+                : null
+        );
+
+        ps.setBigDecimal(9, lot.getPurchasePrice());
+        ps.setString(10, lot.getStatus());
+        ps.setString(11, lot.getNotes());
+
+        ps.setInt(12, lot.getId());
+
+        ps.executeUpdate();
+
+    } finally {
+        db.releaseConnection(conn);
     }
+}
 
     @Override
     public void updateRemainingQty(int id, BigDecimal qty) throws SQLException {

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Nova Factory ERP
 
 A professional desktop Factory Management / ERP application built with Java 21, JavaFX 21, and MySQL.
@@ -106,3 +107,6 @@ com.nova.factoryerp/
 
 **JavaFX not found**
 - Ensure you run via `mvn clean javafx:run`, not `java -jar`
+=======
+# Infinity-ERP-
+>>>>>>> 0a9937e9bb55a22227283c50112cb11d56252626
