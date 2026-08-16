@@ -1,11 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.*?>
+
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.nova.factoryerp.controllers.inventory.CustomersController"
-      styleClass="content-area" alignment="CENTER" spacing="16" style="-fx-padding:60;"
+      styleClass="content-area"
+      spacing="14"
       stylesheets="@../../css/nova-erp.css">
-    <Label text="🚧" style="-fx-font-size:48px;"/>
-    <Label text="CustomersView" style="-fx-font-size:22px;-fx-font-weight:bold;-fx-text-fill:#4e8ef7;"/>
-    <Label text="Coming in next phase" style="-fx-text-fill:#9199b0;-fx-font-size:14px;"/>
+
+    <HBox spacing="12" alignment="CENTER_LEFT">
+
+        <Label text="Customers"
+               style="-fx-font-size:24px;-fx-font-weight:bold;"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Button text="+ Add Customer"
+                onAction="#handleAdd"
+                styleClass="btn-primary"/>
+
+        <Button text="Refresh"
+                onAction="#handleRefresh"
+                styleClass="btn-secondary"/>
+
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+
+        <TextField fx:id="searchField"
+                   promptText="Search customers..."
+                   onAction="#handleSearch"
+                   prefWidth="300"/>
+
+        <ComboBox fx:id="statusFilter"
+                  promptText="Status"
+                  prefWidth="150"
+                  onAction="#handleSearch"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Label fx:id="countLabel"
+               text="0 customers"
+               style="-fx-text-fill:#9199b0;"/>
+
+    </HBox>
+
+    <TableView fx:id="customersTable"
+               VBox.vgrow="ALWAYS">
+
+        <columns>
+
+            <TableColumn fx:id="codeCol"
+                         text="Customer Code"
+                         prefWidth="130"/>
+
+            <TableColumn fx:id="nameCol"
+                         text="Name"
+                         prefWidth="180"/>
+
+            <TableColumn fx:id="phoneCol"
+                         text="Phone"
+                         prefWidth="130"/>
+
+            <TableColumn fx:id="emailCol"
+                         text="Email"
+                         prefWidth="190"/>
+
+            <TableColumn fx:id="cityCol"
+                         text="City"
+                         prefWidth="120"/>
+
+            <TableColumn fx:id="balanceCol"
+                         text="Current Balance"
+                         prefWidth="140"/>
+
+            <TableColumn fx:id="statusCol"
+                         text="Status"
+                         prefWidth="110"/>
+
+            <TableColumn fx:id="actionsCol"
+                         text="Actions"
+                         prefWidth="180"/>
+
+        </columns>
+
+        <placeholder>
+            <Label text="No customers found."
+                   style="-fx-text-fill:#9199b0;"/>
+        </placeholder>
+
+    </TableView>
+
 </VBox>

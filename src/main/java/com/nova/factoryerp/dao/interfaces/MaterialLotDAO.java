@@ -10,6 +10,7 @@ public interface MaterialLotDAO {
     List<MaterialLot> findAll() throws SQLException;
     List<MaterialLot> search(String keyword, Integer materialId, String status) throws SQLException;
     List<MaterialLot> findByMaterial(int materialId) throws SQLException;
+    int getNextSequence(String materialCode, int year) throws SQLException;
     List<MaterialLot> findAvailableByMaterial(int materialId) throws SQLException;
     Optional<MaterialLot> findById(int id) throws SQLException;
     void save(MaterialLot lot) throws SQLException;

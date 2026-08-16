@@ -77,26 +77,42 @@ public class LoginController {
         }
     }
 
-    private void openMainWindow() {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/fxml/main.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Nova Factory ERP");
-            stage.setScene(new Scene(root, 1280, 800));
-            stage.setMinWidth(1024);
-            stage.setMinHeight(680);
-            stage.show();
-            // Close login window
-            Stage loginStage = (Stage) loginButton.getScene().getWindow();
-            loginStage.close();
-            log.info("Main window opened");
-        } catch (Exception e) {
-            log.error("Failed to open main window", e);
-            showError("Failed to open application. Check logs.");
-        }
+ private void openMainWindow() {
+    try {
+        FXMLLoader loader = new FXMLLoader(
+            getClass().getResource("/fxml/main.fxml"));
+
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setTitle("Nova Factory ERP");
+
+        Scene scene = new Scene(root, 1280, 800);
+        stage.setScene(scene);
+
+        stage.setMinWidth(1024);
+        stage.setMinHeight(680);
+
+        // Open as a REAL maximized window.
+        // This keeps the normal Windows title bar and
+        // minimize / maximize / close buttons visible.
+        stage.setMaximized(true);
+
+        stage.show();
+
+        // Close login window
+        Stage loginStage =
+            (Stage) loginButton.getScene().getWindow();
+
+        loginStage.close();
+
+        log.info("Main window opened");
+
+    } catch (Exception e) {
+        log.error("Failed to open main window", e);
+        showError("Failed to open application. Check logs.");
     }
+}
 
     private void showError(String msg) {
         errorLabel.setText(msg);

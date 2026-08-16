@@ -1,0 +1,380 @@
+/* =========================================================
+   NOVA FACTORY ERP
+   SALES ORDERS MODULE
+   ========================================================= */
+
+
+/* =========================================================
+   ROOT
+   ========================================================= */
+
+.sales-orders-root {
+    -fx-background-color: #11151f;
+    -fx-padding: 20px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.sales-orders-header {
+    -fx-padding: 4px 0 8px 0;
+}
+
+.sales-orders-title {
+    -fx-text-fill: #f4f6fb;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+.sales-orders-subtitle {
+    -fx-text-fill: #7f899f;
+    -fx-font-size: 12px;
+}
+
+
+/* =========================================================
+   SEARCH / FILTER BAR
+   ========================================================= */
+
+.sales-orders-toolbar {
+    -fx-background-color: #181d29;
+    -fx-background-radius: 10px;
+    -fx-border-color: #252c3b;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-padding: 12px;
+}
+
+.sales-orders-toolbar TextField,
+.sales-orders-toolbar ComboBox {
+    -fx-background-color: #11151f;
+    -fx-background-radius: 7px;
+    -fx-border-color: #2c3445;
+    -fx-border-radius: 7px;
+    -fx-border-width: 1px;
+
+    -fx-text-fill: #e8ebf2;
+    -fx-prompt-text-fill: #687286;
+
+    -fx-padding: 8px 11px;
+}
+
+.sales-orders-toolbar TextField:focused,
+.sales-orders-toolbar ComboBox:focused {
+    -fx-border-color: #4e8ef7;
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(78, 142, 247, 0.18),
+        8,
+        0.25,
+        0,
+        0
+    );
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.sales-btn {
+    -fx-background-radius: 7px;
+    -fx-border-radius: 7px;
+
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+
+    -fx-padding: 8px 15px;
+
+    -fx-cursor: hand;
+}
+
+
+/* Search / Refresh */
+
+.sales-btn-secondary {
+    -fx-background-color: #222938;
+    -fx-border-color: #323b4e;
+    -fx-border-width: 1px;
+
+    -fx-text-fill: #cbd2df;
+}
+
+.sales-btn-secondary:hover {
+    -fx-background-color: #2a3243;
+    -fx-border-color: #4e8ef7;
+
+    -fx-text-fill: #ffffff;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(78, 142, 247, 0.18),
+        8,
+        0.25,
+        0,
+        0
+    );
+}
+
+.sales-btn-secondary:pressed {
+    -fx-background-color: #1b2230;
+}
+
+
+/* New Order */
+
+.sales-btn-primary {
+    -fx-background-color: #4e8ef7;
+
+    -fx-text-fill: white;
+
+    -fx-background-radius: 7px;
+    -fx-border-radius: 7px;
+
+    -fx-padding: 8px 17px;
+
+    -fx-font-weight: bold;
+}
+
+.sales-btn-primary:hover {
+    -fx-background-color: #609aff;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(78, 142, 247, 0.30),
+        12,
+        0.25,
+        0,
+        0
+    );
+}
+
+.sales-btn-primary:pressed {
+    -fx-background-color: #3e78d5;
+}
+
+
+/* =========================================================
+   SUMMARY BAR
+   ========================================================= */
+
+.sales-orders-summary {
+    -fx-padding: 4px 2px 4px 2px;
+}
+
+.sales-orders-count {
+    -fx-text-fill: #8f9ab0;
+    -fx-font-size: 12px;
+}
+
+
+/* =========================================================
+   TABLE CONTAINER
+   ========================================================= */
+
+.sales-orders-table-container {
+    -fx-background-color: #181d29;
+    -fx-background-radius: 10px;
+
+    -fx-border-color: #252c3b;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+
+    -fx-padding: 1px;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.sales-orders-table {
+    -fx-background-color: transparent;
+    -fx-control-inner-background: #181d29;
+
+    -fx-table-cell-border-color: transparent;
+
+    -fx-border-width: 0;
+
+    -fx-background-radius: 10px;
+}
+
+
+/* Column headers */
+
+.sales-orders-table .column-header-background {
+    -fx-background-color: #202635;
+    -fx-background-radius: 9px 9px 0 0;
+}
+
+.sales-orders-table .column-header {
+    -fx-background-color: transparent;
+
+    -fx-border-color: transparent transparent #2b3445 transparent;
+    -fx-border-width: 0 0 1px 0;
+
+    -fx-padding: 11px 10px;
+}
+
+.sales-orders-table .column-header .label {
+    -fx-text-fill: #aeb7c8;
+
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+
+    -fx-alignment: CENTER_LEFT;
+}
+
+
+/* Table rows */
+
+.sales-orders-table .table-row-cell {
+    -fx-background-color: #181d29;
+
+    -fx-border-color: transparent transparent #222a39 transparent;
+    -fx-border-width: 0 0 1px 0;
+
+    -fx-cell-size: 48px;
+}
+
+.sales-orders-table .table-row-cell:odd {
+    -fx-background-color: #171c27;
+}
+
+.sales-orders-table .table-row-cell:hover {
+    -fx-background-color: #20283a;
+}
+
+.sales-orders-table .table-row-cell:selected {
+    -fx-background-color: #263754;
+}
+
+.sales-orders-table .table-row-cell:selected .table-cell {
+    -fx-text-fill: #ffffff;
+}
+
+
+/* Cells */
+
+.sales-orders-table .table-cell {
+    -fx-text-fill: #d8deea;
+
+    -fx-font-size: 12px;
+
+    -fx-padding: 0 10px;
+
+    -fx-alignment: CENTER_LEFT;
+}
+
+
+/* =========================================================
+   EMPTY TABLE
+   ========================================================= */
+
+.sales-orders-table .placeholder {
+    -fx-background-color: #181d29;
+}
+
+.sales-orders-table .placeholder .label {
+    -fx-text-fill: #69758a;
+    -fx-font-size: 13px;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.sales-status {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+
+    -fx-padding: 5px 9px;
+
+    -fx-background-radius: 20px;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
+.sales-action-button {
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+
+    -fx-padding: 5px 10px;
+
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+
+    -fx-cursor: hand;
+}
+
+.sales-action-view {
+    -fx-background-color: #222b3b;
+    -fx-border-color: #36445b;
+    -fx-text-fill: #b9c7dc;
+}
+
+.sales-action-view:hover {
+    -fx-background-color: #2d3a4f;
+    -fx-text-fill: white;
+}
+
+.sales-action-edit {
+    -fx-background-color: #26364c;
+    -fx-border-color: #3b5a7d;
+    -fx-text-fill: #7eb3ff;
+}
+
+.sales-action-edit:hover {
+    -fx-background-color: #304867;
+    -fx-text-fill: white;
+}
+
+.sales-action-danger {
+    -fx-background-color: #3a2429;
+    -fx-border-color: #63363e;
+    -fx-text-fill: #f08a98;
+}
+
+.sales-action-danger:hover {
+    -fx-background-color: #4b2930;
+    -fx-text-fill: white;
+}
+
+
+/* =========================================================
+   SCROLLBARS
+   ========================================================= */
+
+.sales-orders-table .scroll-bar:vertical,
+.sales-orders-table .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.sales-orders-table .scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+.sales-orders-table .scroll-bar .thumb {
+    -fx-background-color: #353e50;
+    -fx-background-radius: 10px;
+}
+
+.sales-orders-table .scroll-bar .thumb:hover {
+    -fx-background-color: #4a566d;
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+.sales-orders-table:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}

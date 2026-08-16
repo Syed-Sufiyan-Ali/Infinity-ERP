@@ -127,16 +127,16 @@ public class MainController {
         btn.getStyleClass().add("active");
     }
 
-    public void navigateTo(String page) {
-        try {
-            Node node = pageCache.computeIfAbsent(page, this::loadPage);
-            if (node != null) {
-                contentArea.getChildren().setAll(node);
-            }
-        } catch (Exception e) {
-            log.error("Navigation error for page: {}", page, e);
+   public void navigateTo(String page) {
+    try {
+        Node node = loadPage(page); // always reload
+        if (node != null) {
+            contentArea.getChildren().setAll(node);
         }
+    } catch (Exception e) {
+        log.error("Navigation error for page: {}", page, e);
     }
+}
 private Node loadPage(String page) {
 
     if ("material_lots".equals(page)) {
@@ -205,12 +205,20 @@ private Node loadPage(String page) {
         root.prefWidth(Double.MAX_VALUE);
         return root;
 
-    }  catch (Exception e) {
-    System.err.println("!!!!!!!! FXML LOAD FAILED !!!!!!!!");
+    } catch (Exception e) {
+
+    System.err.println("======================================");
+    System.err.println("SALES ORDERS FXML FAILED TO LOAD");
     System.err.println("PAGE: " + page);
     System.err.println("FXML: " + fxmlFile);
+    System.err.println("ERROR: " + e.getMessage());
     e.printStackTrace();
-    return buildPlaceholder(page);
+    System.err.println("======================================");
+
+    throw new RuntimeException(
+            "FXML FAILED: " + fxmlFile,
+            e
+    );
 }
 }
 

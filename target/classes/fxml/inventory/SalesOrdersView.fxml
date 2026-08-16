@@ -1,11 +1,194 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.*?>
+
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.nova.factoryerp.controllers.inventory.SalesOrdersController"
-      styleClass="content-area" alignment="CENTER" spacing="16" style="-fx-padding:60;"
-      stylesheets="@../../css/nova-erp.css">
-    <Label text="🚧" style="-fx-font-size:48px;"/>
-    <Label text="SalesOrdersView" style="-fx-font-size:22px;-fx-font-weight:bold;-fx-text-fill:#4e8ef7;"/>
-    <Label text="Coming in next phase" style="-fx-text-fill:#9199b0;-fx-font-size:14px;"/>
+      styleClass="sales-orders-root"
+      spacing="12">
+
+    <!-- HEADER -->
+    <HBox spacing="10"
+      alignment="CENTER_LEFT"
+      styleClass="sales-orders-header">
+
+    <VBox spacing="2">
+
+        <Label text="Sales Orders"
+               styleClass="sales-orders-title"/>
+
+        <Label text="Manage customer orders, payments and order status"
+               styleClass="sales-orders-subtitle"/>
+
+    </VBox>
+
+    <Region HBox.hgrow="ALWAYS"/>
+
+</HBox>
+
+<HBox spacing="10"
+      alignment="CENTER_LEFT"
+      styleClass="sales-orders-toolbar">
+
+    <TextField fx:id="searchField"
+               promptText="Search order / customer..."
+               prefWidth="260"
+               onAction="#handleSearch"/>
+
+    <ComboBox fx:id="statusFilter"
+              prefWidth="145"
+              promptText="Status"/>
+
+    <Button text="Search"
+            onAction="#handleSearch"
+            styleClass="sales-btn sales-btn-secondary"/>
+
+    <Button text="Refresh"
+            onAction="#handleRefresh"
+            styleClass="sales-btn sales-btn-secondary"/>
+
+    <Region HBox.hgrow="ALWAYS"/>
+
+    <Button text="+ New Sales Order"
+            onAction="#handleAdd"
+            styleClass="sales-btn sales-btn-primary"/>
+
+</HBox>
+<HBox alignment="CENTER_LEFT"
+      styleClass="sales-orders-summary">
+
+    <Label fx:id="countLabel"
+           text="0 sales orders"
+           styleClass="sales-orders-count"/>
+
+</HBox>
+<StackPane styleClass="sales-orders-table-container"
+           VBox.vgrow="ALWAYS">
+
+    <TableView fx:id="ordersTable"
+               styleClass="sales-orders-table"
+               VBox.vgrow="ALWAYS">
+
+        <columns>
+
+            <TableColumn fx:id="orderNoCol"
+                         text="Order Number"
+                         prefWidth="145"
+                         minWidth="130"/>
+
+            <TableColumn fx:id="customerCol"
+                         text="Customer"
+                         prefWidth="180"
+                         minWidth="150"/>
+
+            <TableColumn fx:id="dateCol"
+                         text="Date"
+                         prefWidth="105"
+                         minWidth="90"/>
+
+            <TableColumn fx:id="totalCol"
+                         text="Grand Total"
+                         prefWidth="120"
+                         minWidth="105"/>
+
+            <TableColumn fx:id="paidCol"
+                         text="Paid"
+                         prefWidth="110"
+                         minWidth="95"/>
+
+            <TableColumn fx:id="remainingCol"
+                         text="Remaining"
+                         prefWidth="110"
+                         minWidth="95"/>
+
+            <TableColumn fx:id="statusCol"
+                         text="Status"
+                         prefWidth="110"
+                         minWidth="95"/>
+
+            <TableColumn fx:id="actionsCol"
+                         text="Actions"
+                         prefWidth="235"
+                         minWidth="235"/>
+
+        </columns>
+
+        <placeholder>
+
+            <Label text="No sales orders found."
+                   styleClass="empty-label"/>
+
+        </placeholder>
+
+    </TableView>
+
+</StackPane>
+    <!-- COUNT -->
+    <HBox alignment="CENTER_LEFT">
+
+        <Label fx:id="countLabel"
+               text="0 sales orders"
+               styleClass="section-subtitle"/>
+
+    </HBox>
+
+
+    <!-- SALES ORDERS TABLE -->
+    <TableView fx:id="ordersTable"
+               VBox.vgrow="ALWAYS">
+
+        <columns>
+
+            <TableColumn fx:id="orderNoCol"
+                         text="Order Number"
+                         prefWidth="145"
+                         minWidth="130"/>
+
+            <TableColumn fx:id="customerCol"
+                         text="Customer"
+                         prefWidth="180"
+                         minWidth="150"/>
+
+            <TableColumn fx:id="dateCol"
+                         text="Date"
+                         prefWidth="105"
+                         minWidth="90"/>
+
+            <TableColumn fx:id="totalCol"
+                         text="Grand Total"
+                         prefWidth="120"
+                         minWidth="105"/>
+
+            <TableColumn fx:id="paidCol"
+                         text="Paid"
+                         prefWidth="110"
+                         minWidth="95"/>
+
+            <TableColumn fx:id="remainingCol"
+                         text="Remaining"
+                         prefWidth="110"
+                         minWidth="95"/>
+
+            <TableColumn fx:id="statusCol"
+                         text="Status"
+                         prefWidth="110"
+                         minWidth="95"/>
+
+            <TableColumn fx:id="actionsCol"
+                         text="Actions"
+                         prefWidth="235"
+                         minWidth="235"/>
+
+        </columns>
+
+        <placeholder>
+
+            <Label text="No sales orders found."
+                   styleClass="empty-label"/>
+
+        </placeholder>
+
+    </TableView>
+
 </VBox>

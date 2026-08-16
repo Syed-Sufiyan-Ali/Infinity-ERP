@@ -3,7 +3,7 @@ package com.nova.factoryerp.dao.impl;
 import com.nova.factoryerp.dao.interfaces.MaterialLotDAO;
 import com.nova.factoryerp.database.DatabaseConnection;
 import com.nova.factoryerp.models.MaterialLot;
-
+import com.nova.factoryerp.utils.LotNumberUtil;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
@@ -117,7 +117,47 @@ public List<MaterialLot> findAll() throws SQLException {
         } finally { db.releaseConnection(conn); }
         return list;
     }
+@Override
+public int getNextSequence(String materialCode, int year) throws SQLException {
 
+    String normalizedCode =
+            LotNumberUtil.normalizeMaterialCode(materialCode);
+
+    String prefix =
+            "LOT-" + normalizedCode + "-" + year + "-";
+
+    String sql =
+            "SELECT MAX(CAST(SUBSTRING_INDEX(lot_number, '-', -1) AS UNSIGNED)) " +
+            "FROM material_lots " +
+            "WHERE lot_number LIKE ?";
+
+    Connection conn = db.getConnection();
+
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setString(1, prefix + "%");
+
+        try (ResultSet rs = ps.executeQuery()) {
+
+            if (rs.next()) {
+
+                int currentMax = rs.getInt(1);
+
+                if (rs.wasNull()) {
+                    return 1;
+                }
+
+                return currentMax + 1;
+            }
+
+        }
+
+    } finally {
+        db.releaseConnection(conn);
+    }
+
+    return 1;
+}
     @Override
     public List<MaterialLot> findAvailableByMaterial(int materialId) throws SQLException {
         List<MaterialLot> list = new ArrayList<>();

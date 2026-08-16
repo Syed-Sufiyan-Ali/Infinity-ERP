@@ -1,0 +1,464 @@
+/* =========================================================
+   NOVA FACTORY ERP
+   SALES ORDER DIALOG
+   ========================================================= */
+
+.sales-order-dialog {
+    -fx-background-color: #11151f;
+}
+
+.sales-order-dialog .content {
+    -fx-background-color: #11151f;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.sales-dialog-content {
+    -fx-background-color: #11151f;
+    -fx-padding: 26px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.sales-dialog-header {
+    -fx-padding: 0 0 8px 0;
+}
+
+.sales-dialog-title {
+    -fx-text-fill: #f4f6fb;
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+}
+
+.sales-dialog-subtitle {
+    -fx-text-fill: #7f899f;
+    -fx-font-size: 12px;
+}
+
+
+/* =========================================================
+   FIELD LABELS
+   ========================================================= */
+
+.sales-field-label {
+    -fx-text-fill: #8994aa;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.sales-order-dialog TextField,
+.sales-order-dialog ComboBox,
+.sales-order-dialog DatePicker {
+    -fx-background-color: #181d29;
+    -fx-background-radius: 7px;
+
+    -fx-border-color: #2c3445;
+    -fx-border-radius: 7px;
+    -fx-border-width: 1px;
+
+    -fx-text-fill: #edf1f8;
+    -fx-prompt-text-fill: #69758a;
+
+    -fx-padding: 9px 11px;
+}
+
+.sales-order-dialog TextField:focused,
+.sales-order-dialog ComboBox:focused,
+.sales-order-dialog DatePicker:focused {
+    -fx-border-color: #4e8ef7;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(78,142,247,0.22),
+        9,
+        0.25,
+        0,
+        0
+    );
+}
+
+
+/* =========================================================
+   PRODUCTS
+   ========================================================= */
+
+.sales-products-container {
+    -fx-background-color: #181d29;
+
+    -fx-background-radius: 9px;
+
+    -fx-border-color: #252c3b;
+    -fx-border-radius: 9px;
+    -fx-border-width: 1px;
+
+    -fx-padding: 8px;
+}
+
+.sales-product-header {
+    -fx-background-color: #202635;
+
+    -fx-background-radius: 7px;
+
+    -fx-padding: 9px 8px;
+}
+
+.sales-product-header-label {
+    -fx-text-fill: #8994aa;
+    -fx-font-size: 9px;
+    -fx-font-weight: bold;
+}
+
+.sales-product-row {
+    -fx-background-color: #151a25;
+
+    -fx-background-radius: 7px;
+
+    -fx-padding: 8px;
+}
+
+.sales-product-row:hover {
+    -fx-background-color: #1d2534;
+}
+
+.sales-product-price {
+    -fx-text-fill: #8db7ff;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.sales-number-field {
+    -fx-alignment: CENTER;
+}
+
+.sales-total-bulbs {
+    -fx-text-fill: #ffffff;
+
+    -fx-background-color: #222b3b;
+
+    -fx-background-radius: 6px;
+
+    -fx-padding: 8px 12px;
+
+    -fx-alignment: CENTER;
+}
+
+
+/* =========================================================
+   REMOVE
+   ========================================================= */
+
+.sales-remove-button {
+    -fx-background-color: #39242a;
+
+    -fx-text-fill: #f08a98;
+
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 6px;
+
+    -fx-border-color: #63363e;
+    -fx-border-radius: 6px;
+
+    -fx-cursor: hand;
+}
+
+.sales-remove-button:hover {
+    -fx-background-color: #4a2930;
+
+    -fx-text-fill: white;
+}
+
+
+/* =========================================================
+   ADD PRODUCT
+   ========================================================= */
+
+.sales-dialog-add-button {
+    -fx-background-color: #222938;
+
+    -fx-text-fill: #bfc8d8;
+
+    -fx-border-color: #323b4e;
+    -fx-border-radius: 7px;
+
+    -fx-background-radius: 7px;
+
+    -fx-padding: 8px 14px;
+
+    -fx-font-weight: bold;
+
+    -fx-cursor: hand;
+}
+
+.sales-dialog-add-button:hover {
+    -fx-background-color: #293346;
+
+    -fx-border-color: #4e8ef7;
+
+    -fx-text-fill: white;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.sales-section-title {
+    -fx-text-fill: #aeb7c8;
+
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+
+    -fx-letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   PAYMENT / TOTAL CARDS
+   ========================================================= */
+
+.sales-payment-section,
+.sales-total-section {
+
+    -fx-background-color: #181d29;
+
+    -fx-background-radius: 10px;
+
+    -fx-border-color: #252c3b;
+    -fx-border-radius: 10px;
+
+    -fx-padding: 16px;
+}
+
+
+/* =========================================================
+   NOTES
+   ========================================================= */
+
+.sales-dialog-notes {
+    -fx-background-color: #181d29;
+
+    -fx-control-inner-background: #181d29;
+
+    -fx-text-fill: #edf1f8;
+
+    -fx-prompt-text-fill: #69758a;
+
+    -fx-border-color: #2c3445;
+    -fx-border-radius: 7px;
+
+    -fx-background-radius: 7px;
+
+    -fx-padding: 8px;
+}
+
+.sales-dialog-notes .content {
+    -fx-background-color: #181d29;
+}
+
+
+/* =========================================================
+   SUMMARY
+   ========================================================= */
+
+.sales-summary-label {
+    -fx-text-fill: #8994aa;
+
+    -fx-font-size: 12px;
+}
+
+.sales-money-value {
+    -fx-text-fill: #dce3ef;
+
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.sales-grand-total {
+    -fx-text-fill: #ffffff;
+
+    -fx-font-size: 19px;
+    -fx-font-weight: bold;
+}
+
+
+/* =========================================================
+   SEPARATOR
+   ========================================================= */
+
+.sales-order-dialog .separator .line {
+    -fx-border-color: #283142;
+}
+
+
+/* =========================================================
+   DIALOG BUTTONS
+   ========================================================= */
+
+.sales-order-dialog .button-bar {
+    -fx-background-color: #151a25;
+
+    -fx-padding: 13px 18px;
+}
+
+.sales-order-dialog .button {
+    -fx-background-radius: 7px;
+    -fx-border-radius: 7px;
+
+    -fx-padding: 8px 17px;
+
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+
+    -fx-cursor: hand;
+}
+
+.sales-order-dialog .button:default {
+    -fx-background-color: #4e8ef7;
+    -fx-text-fill: white;
+}
+
+.sales-order-dialog .button:default:hover {
+    -fx-background-color: #609aff;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(78,142,247,0.28),
+        10,
+        0.25,
+        0,
+        0
+    );
+}
+
+.sales-order-dialog .button:cancel {
+    -fx-background-color: #222938;
+
+    -fx-text-fill: #cbd2df;
+
+    -fx-border-color: #323b4e;
+}
+
+.sales-order-dialog .button:cancel:hover {
+    -fx-background-color: #2a3243;
+    -fx-text-fill: white;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+.sales-dialog-scroll {
+    -fx-background-color: transparent;
+}
+
+.sales-dialog-scroll > .viewport {
+    -fx-background-color: #11151f;
+}
+
+.sales-dialog-scroll .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.sales-dialog-scroll .scroll-bar .thumb {
+    -fx-background-color: #353e50;
+    -fx-background-radius: 10px;
+}
+
+.sales-dialog-scroll .scroll-bar .thumb:hover {
+    -fx-background-color: #4a566d;
+}
+/* =========================================================
+   DIALOG BUTTON BAR
+   ========================================================= */
+
+.sales-order-dialog .button-bar {
+    -fx-background-color: #151a24;
+    -fx-padding: 12px 18px 14px 18px;
+    -fx-border-color: #252c3b transparent transparent transparent;
+    -fx-border-width: 1px 0 0 0;
+}
+
+.sales-order-dialog .button-bar .container {
+    -fx-background-color: transparent;
+}
+
+
+/* =========================================================
+   CREATE / SAVE BUTTON
+   ========================================================= */
+
+.sales-dialog-save-button {
+    -fx-background-color: #4e8ef7;
+    -fx-text-fill: white;
+
+    -fx-background-radius: 7px;
+    -fx-border-radius: 7px;
+
+    -fx-padding: 9px 22px;
+
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+
+    -fx-cursor: hand;
+}
+
+.sales-dialog-save-button:hover {
+    -fx-background-color: #609aff;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(78, 142, 247, 0.30),
+        12,
+        0.25,
+        0,
+        0
+    );
+}
+
+.sales-dialog-save-button:pressed {
+    -fx-background-color: #3e78d5;
+}
+
+
+/* =========================================================
+   CANCEL BUTTON
+   ========================================================= */
+
+.sales-dialog-cancel-button {
+    -fx-background-color: #222938;
+
+    -fx-text-fill: #cbd2df;
+
+    -fx-border-color: #323b4e;
+    -fx-border-width: 1px;
+
+    -fx-background-radius: 7px;
+    -fx-border-radius: 7px;
+
+    -fx-padding: 9px 20px;
+
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+
+    -fx-cursor: hand;
+}
+
+.sales-dialog-cancel-button:hover {
+    -fx-background-color: #2b3343;
+    -fx-border-color: #4e8ef7;
+    -fx-text-fill: white;
+}
